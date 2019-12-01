@@ -11,6 +11,26 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/', 'MyAuth\MyLogincontroller@index')->name('index');
+Route::get('/login', 'MyAuth\MyLogincontroller@index')->name('login');
+Route::post('/', 'MyAuth\MyLogincontroller@authproc')->name('mylogin');
+Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
+
+    Route::middleware(['auth'])->group(function(){
+        
+        Route::get('/main','Appmain\MainPageController@showMainPage')->name('main');
+        Route::get('/register','Appmain\MainPageController@showMainPage')->name('registr');
+   
+    
+    
+    
+    
 });
+
+//Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
