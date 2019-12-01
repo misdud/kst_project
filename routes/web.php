@@ -23,7 +23,16 @@ Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
     Route::middleware(['auth'])->group(function(){
         
         Route::get('/main','Appmain\MainPageController@showMainPage')->name('main');
-        Route::get('/register','Appmain\MainPageController@showMainPage')->name('registr');
+        
+        //sitting users for admin
+        Route::get('/users','Appmain\WorksUsersController@show_users')->name('show_users');
+        Route::get('/registr','Appmain\WorksUsersController@registr')->name('registr_user');
+        //create user
+        Route::post('/registr','Appmain\WorksUsersController@create');
+
+        //edit  user
+        Route::get('/edituser/{id}','Appmain\WorksUsersController@edit')->name('edit_user')->where('id','[0-9]+');
+        Route::put('/edituser/{id}','Appmain\WorksUsersController@edit');
    
     
     

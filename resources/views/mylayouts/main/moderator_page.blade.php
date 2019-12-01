@@ -3,9 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-
         <div class="col-md-3">
-
             <div class="nav-side-menu">
                 <nav class="navbar bg-light justify-content-center">
                         <!-- Links -->
@@ -16,8 +14,7 @@
                                 <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
                                 <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
                                 <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-                                <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-                                <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+                               
                             </div>
                         </div>
 
@@ -34,7 +31,7 @@
                 <div class="card-body">
         
 
-                    You are logged in!
+                    Moderator page
                 </div>
             </div>
         </div>
