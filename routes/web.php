@@ -15,6 +15,7 @@
 //    return view('welcome');
 //});
 
+
 Route::get('/', 'MyAuth\MyLogincontroller@index')->name('index');
 Route::get('/login', 'MyAuth\MyLogincontroller@index')->name('login');
 Route::post('/', 'MyAuth\MyLogincontroller@authproc')->name('mylogin');
@@ -32,7 +33,7 @@ Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
 
         //edit  user
         Route::get('/edituser/{id}','Appmain\WorksUsersController@edit')->name('edit_user')->where('id','[0-9]+');
-        Route::put('/edituser/{id}','Appmain\WorksUsersController@edit');
+        Route::put('/edituseru/{id}','Appmain\WorksUsersController@editDbUser')->name('edit_bd_user')->where('id', '[0-9]+');
    
     
     

@@ -25,9 +25,9 @@
             <td>{{ $user->name }}</td>
             <td>{{ $user->login}}</td>
              @if($user->activ)
-                <td>Активен</td>
+                <td class="table-success">Активен</td>
              @else
-                <td>Заблокирован</td>
+                <td class="table-warning">Заблокирован</td>
              @endif
             <td><a href="{{ route('edit_user',['id'=>$user->id])}}" class="btn btn-outline-secondary" role="button">Изменить</a></td>
           </tr>

@@ -68,14 +68,14 @@ class WorksUsersController extends Controller {
                 'password'=> Hash::make($data['password']),
             ]);
             
-            $creat_user = "Пользователь ". $data['name']." успешно создан";
+            $creat_user = "Пользователь <". $data['name']."> успешно создан";
             return redirect()->back()->with('message', $creat_user);
         }else{
             return redirect()->back()->with('message', 'Произошла ошибка при создании');
         }
     }
 
-
+    //echo form for edit user
     public function edit($id=0){
         if($id == 0){
             return redirect()->back()->with('message', 'Произошла ошибка при выборе');
@@ -87,6 +87,15 @@ class WorksUsersController extends Controller {
             return view('mylayouts.main.admin_page', compact('edit_user', 'formySwith'));
             
         }
+        
+    }
+    
+    //function for edit user
+    public function editDbUser(Request $request, $id){
+        
+        dump($id);
+        dump($request->method());
+        exit();
         
     }
   

@@ -65,6 +65,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Создать') }}
                                 </button>
+                                <a href="{{ route('show_users') }}" class="btn btn-info" role="button">Вернуться назад</a>
                             </div>
                         </div>
                     </form>
