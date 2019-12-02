@@ -33,7 +33,7 @@ Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
 
         //edit  user
         Route::get('/edituser/{id}','Appmain\WorksUsersController@edit')->name('edit_user')->where('id','[0-9]+');
-        Route::put('/edituseru/{id}','Appmain\WorksUsersController@editDbUser')->name('edit_bd_user')->where('id', '[0-9]+');
+        Route::match(['get', 'put'],'/edituseru/{id}','Appmain\WorksUsersController@editDbUser')->name('edit_bd_user')->where('id', '[0-9]+');
    
     
     

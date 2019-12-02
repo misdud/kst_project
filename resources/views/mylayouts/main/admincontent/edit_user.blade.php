@@ -6,8 +6,21 @@
         <form method="POST" action="{{ route('edit_bd_user', ['id'=>$edit_user['id']]) }}">
             @method('PUT')
             @csrf
-            
-            @if (session('message'))
+            @if(session('message') == 'Пароль и поля изменены')
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+            @endif
+            @if(session('message') == 'Вы ничего не изменили')
+            <div class="alert alert-info">
+                {{ session('message') }}
+            </div>
+            @endif
+            @if(session('message') == 'Пользователь заблокирован')
+            <div class="alert alert-danger">
+                {{ session('message') }}
+            </div>
+            @elseif( session('message') == 'Пользователь активирован')
             <div class="alert alert-success">
                 {{ session('message') }}
             </div>
@@ -37,9 +50,9 @@
             </div>
 
             <div class="form-group row">
-               
+
                 <label for="activ" class="col-md-4 col-form-label text-md-right">{{ __('Статус') }}</label>
-                 @if($edit_user['activ'])
+                @if($edit_user['activ'])
                 <div class="col-md-6">
                     <input id="activ" type="text" class="form-control" name="activ" value="Активирован" required autocomplete="activ" readonly>
                 </div>
@@ -53,35 +66,34 @@
             <div class="form-group row">
                 <label for="activ" class="col-md-4 col-form-label text-md-right"></label>
                 <div class="col-md-6">
-               @if($edit_user['activ']==1)
-                  <div class="form-check-inline">
-                       <label class="form-check-label">
+                    @if($edit_user['activ']==1)
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
                             <input type="radio" class="form-check-input"  name="activuser" value="0" >Заблокировать
                         </label>
-                   
-                      </div>
-               @else
-                      <div class="form-check-inline">
+
+                    </div>
+                    @else
+                    <div class="form-check-inline">
                         <label class="form-check-label">
                             <input type="radio" class="form-check-input" name="activuser" value="1">Активировть
                         </label>
-                      </div>
-                @endif
+                    </div>
+                    @endif
                 </div>
             </div>
 
-
-
-
-
-
-
             <div class="form-group row">
-                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Пароль') }}</label>
+                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Изменить пароль') }}</label>
 
                 <div class="col-md-6">
-                    <input id="password" type="password" class="form-control" name="password" value="" autocomplete="password">
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
 
+                    @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
             </div>
 

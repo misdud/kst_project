@@ -91,11 +91,53 @@ class WorksUsersController extends Controller {
     }
     
     //function for edit user
-    public function editDbUser(Request $request, $id){
+    public function editDbUser(Request $request, $id=null){
         
-        dump($id);
-        dump($request->method());
-        exit();
+        if($request->isMethod('PUT')){
+//            dump($request->activuser);
+//            dump($id);
+//            exit();
+            $user = User::select('name', 'activ')->where('id', $id)->first();
+//            dump($user);
+//            exit();
+            
+          if($request->input('activuser') === '1' && $request->input('passport') == ''){
+ 
+              User::where('id', $id)->update([
+                  'name' => $request->input('name'),
+                  'activ' => $request->input('activuser')
+              ]);
+              return redirect()->back()->with('message', 'Пользователь активирован');
+          }elseif ($request->input('activuser') === '0' && $request->input('password') == '') {
+                User::where('id', $id)->update([
+                    'name'=>$request->input('name'),
+                    'activ'=>$request->input('activuser'),
+                ]);
+                return redirect()->back()->with('message', 'Пользователь заблокирован');
+            }elseif ($request->input('name')==$user->name && is_null($request->input('activuser')) && $request->input('password')=='') {
+                return redirect()->back()->with('message', 'Вы ничего не изменили');
+            }elseif($request->has('name') && $request->has('password')){
+               
+                $rules = [
+                'name' => ['required', 'string', 'max:30'],
+                'password' => ['string', 'min:6']];
+                
+                $this->validate($request, ['password'=>['min:6']]);
+                
+                User::where('id', $id)->update([
+                    'name'=>$request->input('name'),
+                    'password'=>Hash::make($request->input('passvord')),
+                    'activ'=>$request->input('activ')==='1'?1:0,
+                ]);
+                return redirect()->back()->with('message', 'Пароль и поля изменены');
+            }
+            
+        }else{
+            return redirect()->route('show_users');
+        }
+//        dump($id);
+//        dump($request->all());
+//        exit();
         
     }
   
