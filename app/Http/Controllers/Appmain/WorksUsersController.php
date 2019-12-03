@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use App\Role;
 
 class WorksUsersController extends Controller {
 
@@ -81,10 +82,11 @@ class WorksUsersController extends Controller {
             return redirect()->back()->with('message', 'Произошла ошибка при выборе');
         }else{
             $edit_user = User::findOrFail($id);
+            $roles = $edit_user->roles()->orderBy('rolename')->get();
 //           dump($edit_user);
 //          exit();
             $formySwith = 3;
-            return view('mylayouts.main.admin_page', compact('edit_user', 'formySwith'));
+            return view('mylayouts.main.admin_page', compact('edit_user', 'formySwith', 'roles' ));
             
         }
         

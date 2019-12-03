@@ -131,3 +131,73 @@
         </form>
     </div>
 </div>
+
+<br />
+<br />
+
+<div class="card">
+    <div class="card-header">{{ __('Роли пользователя') }}</div>
+
+    <div class="card-body justify-content-center">
+        <form method="POST" action="{{ route('edit_bd_user', ['id'=>$edit_user['id']]) }}">
+            @method('PUT')
+            @csrf
+            @if(session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+            @endif
+   
+  
+
+            <div class="form-group row">
+                <label for="login" class="col-md-4 col-form-label text-md-right">{{ __('Роли пользователя ') }}</label>
+                @if(count($roles)==0)
+                <div class="col-md-6">
+                    <input class="form-control" type="text" placeholder="У пользователя не назначены роли" readonly>
+                </div>
+                @else
+                <div class="col-md-6">
+                    <input class="form-control"  type="text" placeholder="
+                           @foreach($roles as $role)
+                           <b>$role->rolename, </b>
+                           @endforeach
+                           " readonly>
+                </div>
+                
+                @endif
+            </div>
+
+            <div class="form-group row">
+
+                <label for="activ" class="col-md-4 col-form-label text-md-right">{{ __('Роли') }}</label>
+
+                <div class="col-md-6">
+                    
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+        <option selected>Выберите из списка</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+                </div>
+
+            </div>
+
+            
+            
+            
+            
+            
+            
+            <div class="form-group row mb-0">
+                <div class="col-md-6 offset-md-4">
+                    <button type="submit" class="btn btn-secondary">
+                        {{ __('Добавить') }}
+                    </button>
+                    <a href="{{ route('show_users') }}" class="btn btn-info" role="button">Вернуться к списку</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

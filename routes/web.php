@@ -30,11 +30,13 @@ Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
         Route::get('/registr','Appmain\WorksUsersController@registr')->name('registr_user');
         //create user
         Route::post('/registr','Appmain\WorksUsersController@create');
-
         //edit  user
         Route::get('/edituser/{id}','Appmain\WorksUsersController@edit')->name('edit_user')->where('id','[0-9]+');
         Route::match(['get', 'put'],'/edituseru/{id}','Appmain\WorksUsersController@editDbUser')->name('edit_bd_user')->where('id', '[0-9]+');
-   
+        //works roles
+        Route::get('/roles', 'Appmain\RolesMainController@show')->name('roles_main');
+        Route::match(['get', 'post'],'/rolecreat', 'Appmain\RolesMainController@rolecreat')->name('role_creat');
+        Route::match(['get', 'post'],'/rolecreat1', 'Appmain\RolesMainController@rolecreat')->name('edit_role');
     
     
     
