@@ -62,40 +62,49 @@ class WorksUsersController extends Controller {
             $this->validate($request, $rules);
 
             $data = $request->only(['name', 'login', 'password']);
-               
+
             User::create([
                 'name' => $data['name'],
                 'login' => $data['login'],
-                'password'=> Hash::make($data['password']),
+                'password' => Hash::make($data['password']),
             ]);
-            
-            $creat_user = "Пользователь <". $data['name']."> успешно создан";
+
+            $creat_user = "Пользователь <" . $data['name'] . "> успешно создан";
             return redirect()->back()->with('message', $creat_user);
-        }else{
+        } else {
             return redirect()->back()->with('message', 'Произошла ошибка при создании');
         }
     }
 
     //echo form for edit user
-    public function edit($id=0){
-        if($id == 0){
+    public function edit($id = 0) {
+        if ($id == 0) {
             return redirect()->back()->with('message', 'Произошла ошибка при выборе');
-        }else{
+        } else {
             $edit_user = User::findOrFail($id);
-            $roles = $edit_user->roles()->orderBy('rolename')->get();
+            $roles_user = $edit_user->roles()->orderBy('rolename')->get();
+            //dump($roles_user->isEmpty());
+            //exit();
+            if ($roles_user->isEmpty()) {
+                $rol_user = 'У пользователя нет ролей';
+            } else {
+                $rol_user = '';
+                foreach ($roles_user as $role_user) {
+                    $rol_user .= $role_user->rolename . ', ';
+                }
+            }
+            $roles = Role::where('rolename', '<>','admin')->get();
 //           dump($edit_user);
 //          exit();
             $formySwith = 3;
-            return view('mylayouts.main.admin_page', compact('edit_user', 'formySwith', 'roles' ));
-            
+            return view('mylayouts.main.admin_page', compact('edit_user', 'formySwith', 'rol_user', 'roles'));
         }
-        
     }
-    
+
     //function for edit user
-    public function editDbUser(Request $request, $id=null){
-        
-        if($request->isMethod('PUT')){
+    public function editDbUser(Request $request, $id = null) {
+
+        if ($request->isMethod('PUT')) {
 //            dump($request->activuser);
 //            dump($id);
 //            exit();
@@ -103,45 +112,71 @@ class WorksUsersController extends Controller {
 //            dump($user);
 //            exit();
             
-          if($request->input('activuser') === '1' && $request->input('passport') == ''){
- 
-              User::where('id', $id)->update([
-                  'name' => $request->input('name'),
-                  'activ' => $request->input('activuser')
-              ]);
-              return redirect()->back()->with('message', 'Пользователь активирован');
-          }elseif ($request->input('activuser') === '0' && $request->input('password') == '') {
+            if($request->has('role_id')){
+               $user_id=User::find($id);
+                $user_role=Role::find($request->input('role_id'))->id;
+                $user_id->roles()->attach($user_role);
+               
+                
+                $rol_usr = $user_id->roles()->get();
+                $rol_user='';
+                foreach ($rol_usr as $role){
+                    $arr_id_rol[]=$role->id;
+                    $rol_user.=$role->rolename.' | ';
+                }
+
+                $roles = Role::whereNotIn('id',$arr_id_rol)->get();
+               
+//                dump($rol);
+//                exit();
+
+                $formySwith = 3;
+                $edit_user= $user_id;
+                return view('mylayouts.main.admin_page', compact( 'edit_user', 'formySwith', 'rol_user', 'roles'));
+            }else{
+                dump(10);
+                    exit();
+            }
+            dump(1);
+            exit();
+            
+
+            if ($request->input('activuser') === '1' && $request->input('passport') == '') {
+
                 User::where('id', $id)->update([
-                    'name'=>$request->input('name'),
-                    'activ'=>$request->input('activuser'),
+                    'name' => $request->input('name'),
+                    'activ' => $request->input('activuser')
+                ]);
+                return redirect()->back()->with('message', 'Пользователь активирован');
+            } elseif ($request->input('activuser') === '0' && $request->input('password') == '') {
+                User::where('id', $id)->update([
+                    'name' => $request->input('name'),
+                    'activ' => $request->input('activuser'),
                 ]);
                 return redirect()->back()->with('message', 'Пользователь заблокирован');
-            }elseif ($request->input('name')==$user->name && is_null($request->input('activuser')) && $request->input('password')=='') {
+            } elseif ($request->input('name') == $user->name && is_null($request->input('activuser')) && $request->input('password') == '') {
                 return redirect()->back()->with('message', 'Вы ничего не изменили');
-            }elseif($request->has('name') && $request->has('password')){
-               
+            } elseif ($request->has('name') && $request->has('password')) {
+
                 $rules = [
-                'name' => ['required', 'string', 'max:30'],
-                'password' => ['string', 'min:6']];
-                
-                $this->validate($request, ['password'=>['min:6']]);
-                
+                    'name' => ['required', 'string', 'max:30'],
+                    'password' => ['string', 'min:6']];
+
+                $this->validate($request, ['password' => ['min:6']]);
+
                 User::where('id', $id)->update([
-                    'name'=>$request->input('name'),
-                    'password'=>Hash::make($request->input('passvord')),
-                    'activ'=>$request->input('activ')==='1'?1:0,
+                    'name' => $request->input('name'),
+                    'password' => Hash::make($request->input('passvord')),
+                    'activ' => $request->input('activ') === '1' ? 1 : 0,
                 ]);
                 return redirect()->back()->with('message', 'Пароль и поля изменены');
             }
-            
-        }else{
+        } else {
             return redirect()->route('show_users');
         }
 //        dump($id);
 //        dump($request->all());
 //        exit();
-        
     }
-  
 
 }

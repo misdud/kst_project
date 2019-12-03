@@ -142,30 +142,21 @@
         <form method="POST" action="{{ route('edit_bd_user', ['id'=>$edit_user['id']]) }}">
             @method('PUT')
             @csrf
-            @if(session('message'))
+            @if(session('message_role'?? 'не определено'))
             <div class="alert alert-success">
-                {{ session('message') }}
+                {{ session('message_role') }}
             </div>
             @endif
-   
-  
+
+
 
             <div class="form-group row">
                 <label for="login" class="col-md-4 col-form-label text-md-right">{{ __('Роли пользователя ') }}</label>
-                @if(count($roles)==0)
+
                 <div class="col-md-6">
-                    <input class="form-control" type="text" placeholder="У пользователя не назначены роли" readonly>
+                    <input class="form-control" type="text" placeholder="{{ $rol_user}}" readonly>
                 </div>
-                @else
-                <div class="col-md-6">
-                    <input class="form-control"  type="text" placeholder="
-                           @foreach($roles as $role)
-                           <b>$role->rolename, </b>
-                           @endforeach
-                           " readonly>
-                </div>
-                
-                @endif
+
             </div>
 
             <div class="form-group row">
@@ -173,23 +164,28 @@
                 <label for="activ" class="col-md-4 col-form-label text-md-right">{{ __('Роли') }}</label>
 
                 <div class="col-md-6">
-                    
-            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-        <option selected>Выберите из списка</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
+
+                    <select name='role_id' class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                        @if($roles->count()>0)
+                        <option value='' selected>Выберите из списка доступные роли</option>
+                        @foreach($roles as $role)
+                        <option value="{{$role->id}}">{{ $role->rolename }}</option>
+
+                        @endforeach
+                        @else
+                        Роли не найдены (требуется создать)
+                        @endif
+                    </select>
                 </div>
 
             </div>
 
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+
             <div class="form-group row mb-0">
                 <div class="col-md-6 offset-md-4">
                     <button type="submit" class="btn btn-secondary">

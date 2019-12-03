@@ -40,7 +40,7 @@
         <p>Пока ролей нет в системе - выполните SEED ROLES для загрузки ролей по умолчанию для корректной работы системы. </p>
         <p>Либо создайте (4) роли с именами:</p>
         <ul class="list-group">
-            <li class="list-group-item"> 1. admin</li>
+            <li class="list-group-item">1. admin</li>
             <li class="list-group-item">2. moder_kanc</li>
             <li class="list-group-item">3. menjr_kanc</li>
             <li class="list-group-item">4. user_all</li>
