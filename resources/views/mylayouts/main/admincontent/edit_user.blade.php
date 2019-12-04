@@ -143,17 +143,12 @@
         <form method="POST" action="{{ route('role_add', ['id'=>$edit_user['id']]) }}">
             @method('POST')
             @csrf
-            @if(session('message_role'?? 'не определено'))
+           
+            @isset($message_role)
             <div class="alert alert-success">
-                {{ session('message_role') }}
+                {{ $message_role }}
             </div>
-            @endif
-            
-            @if(session('message'))
-            <div class="alert alert-danger">
-                {{ session('message') }}
-            </div>
-            @endif
+            @endisset
 
             <div class="form-group row">
                 <label for="login" class="col-md-4 col-form-label text-md-right">{{ __('Роли пользователя ') }}</label>
@@ -197,8 +192,26 @@
                         {{ __('Добавить') }}
                     </button>
                     <a href="{{ route('show_users') }}" class="btn btn-info" role="button">Вернуться к списку</a>
+                    
+   
+                  
+                    
                 </div>
             </div>
         </form>
+        <br />
+                <div class="form-group row mb-0">
+                <div class="col-md-6 offset-md-4">
+                         <form action="{{ route('role_delete',['id'=>$edit_user['id']]) }}" method="POST">
+                    @method('DELETE')
+                    @csrf
+
+                   <input  type="hidden" name='user_dell_id' value="{{  $edit_user['id']}}" />
+                   <button type="submit" class="btn  btn-warning">
+                        {{ __('Удалить все роли  от пользователя') }}
+                    </button>
+                   </form>
+                                    </div>
+            </div>
     </div>
 </div>

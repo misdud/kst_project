@@ -38,17 +38,13 @@ class RolesMainController extends Controller
             ]);
 
             $roleinfa = 'Роль <'.$data['rolename'].'> добавлена.';
-            return redirect()->back()->with('message', $roleinfa);
-            
+            return redirect()->back()->with('message', $roleinfa);   
             
         }
         return redirect('/main');
     }
     
         public function roleAddUser(Request $request, $id=0){
-          
-            dump($request->has('role_id'));
-            dump($request->input('role_id'));
 
         if($request->isMethod('POST') && $request->input('role_id')!=NULL && $id !=0 ){
              
@@ -57,11 +53,8 @@ class RolesMainController extends Controller
                 $user_id->roles()->attach($user_role);
 
                 return redirect()->route('edit_user',['id'=>$id]);
-
             }
- 
 
-        
             $info = 'Что-то пошло не так';
             return redirect()->back()->with('message', $info);
 
@@ -69,9 +62,27 @@ class RolesMainController extends Controller
 
 
     
-    public function showUsersRole(){
-        echo 1;
-        exit();
+    public function showUsersRole($id=0){
+           
+            $roles = Role::findOrFail($id);
+            $users_role = $roles->users()->orderBy('name')->paginate(10);
+            //$users = User::select('id', 'name', 'login', 'activ')->where('role.id', $id)->paginate(10);        
+           //for list role users
+//            dump($users_role);
+//            exit();
+            $formySwith = 6;
+            return view('mylayouts.main.admin_page', compact('users_role','formySwith', 'roles'));
+    }
+    
+    public function roleDeleteUser(Request $request, $id=0){
+        
+        if($id == $request->input('user_dell_id')){
+            $user = User::findOrFail($request->input('user_dell_id'));
+            $user->roles()->detach();
+            return redirect()->back();
+
+        }
+        
     }
     
     

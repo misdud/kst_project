@@ -7,7 +7,7 @@
         @if(count($roles)>0)
         <h2>Список всех имеющихся ролей</h2>
 
-        <p>Для корректной работы системя обязательные должны быть роли: <b>admin, moder_kanc, menjr_kanc, user_all</b></p>            
+        <p>Для корректной работы системы обязательн должны быть роли: <b>admin, moder_kanc, menjr_kanc, user_all</b></p>            
         <p>В таблице представлены пользователи системы:</p>            
         <table class="table table-hover">
             <thead class="thead-light">

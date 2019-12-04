@@ -53,8 +53,13 @@
    @case(4)
         @include( 'mylayouts.main.admincontent.role_all', ['header' => 'Работа с ролями в системе'])
         @break
+        
    @case(5)
         @include( 'mylayouts.main.admincontent.role_add', ['header' => 'Добавление роли'])
+        @break
+        
+   @case(6)
+        @include( 'mylayouts.main.admincontent.role_list', ['header' => 'Пользователи роли'])
         @break
 
     @default
