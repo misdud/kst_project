@@ -139,16 +139,21 @@
     <div class="card-header">{{ __('Роли пользователя') }}</div>
 
     <div class="card-body justify-content-center">
-        <form method="POST" action="{{ route('edit_bd_user', ['id'=>$edit_user['id']]) }}">
-            @method('PUT')
+        {{  $edit_user['id'] }}
+        <form method="POST" action="{{ route('role_add', ['id'=>$edit_user['id']]) }}">
+            @method('POST')
             @csrf
             @if(session('message_role'?? 'не определено'))
             <div class="alert alert-success">
                 {{ session('message_role') }}
             </div>
             @endif
-
-
+            
+            @if(session('message'))
+            <div class="alert alert-danger">
+                {{ session('message') }}
+            </div>
+            @endif
 
             <div class="form-group row">
                 <label for="login" class="col-md-4 col-form-label text-md-right">{{ __('Роли пользователя ') }}</label>
@@ -169,7 +174,7 @@
                         @if($roles->count()>0)
                         <option value='' selected>Выберите из списка доступные роли</option>
                         @foreach($roles as $role)
-                        <option value="{{$role->id}}">{{ $role->rolename }}</option>
+                        <option value="{{ $role->id }}">{{ $role->rolename }}</option>
 
                         @endforeach
                         @else

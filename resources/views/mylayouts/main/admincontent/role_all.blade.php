@@ -28,7 +28,7 @@
                     <td>{{ $role->rolename }}</td>
                     <td>{{ $role->inforole}}</td>
 
-                    <td><a href="{{ route('edit_role',['id'=>$role->id])}}" class="btn btn-outline-secondary" role="button">Список пользователей</a></td>
+                    <td><a href="{{ route('show_users_role',['id'=>$role->id])}}" class="btn btn-outline-secondary" role="button">Список пользователей</a></td>
                 </tr>
 
                 @endforeach

@@ -36,7 +36,9 @@ Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
         //works roles
         Route::get('/roles', 'Appmain\RolesMainController@show')->name('roles_main');
         Route::match(['get', 'post'],'/rolecreat', 'Appmain\RolesMainController@rolecreat')->name('role_creat');
-        Route::match(['get', 'post'],'/rolecreat1', 'Appmain\RolesMainController@rolecreat')->name('edit_role');
+        Route::get('/usersrole', 'Appmain\RolesMainController@showUsersRole')->name('show_users_role');
+        Route::match(['post', 'get'],'/roleadd/{id}', 'Appmain\RolesMainController@roleAddUser')->name('role_add');
+        
     
     
     

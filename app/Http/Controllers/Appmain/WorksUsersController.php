@@ -77,8 +77,8 @@ class WorksUsersController extends Controller {
     }
 
     //echo form for edit user
-    public function edit($id = 0) {
-        if ($id == 0) {
+    public function edit(Request $request, $id = 0) {
+        if ($id == 0  && $request->input('role_id') == NULL) {
             return redirect()->back()->with('message', 'Произошла ошибка при выборе');
         } else {
             $edit_user = User::findOrFail($id);
@@ -87,19 +87,29 @@ class WorksUsersController extends Controller {
             //exit();
             if ($roles_user->isEmpty()) {
                 $rol_user = 'У пользователя нет ролей';
+                $roles = Role::select('id', 'rolename', 'inforole')->where('rolename', '<>','admin')->get();
             } else {
-                $rol_user = '';
-                foreach ($roles_user as $role_user) {
-                    $rol_user .= $role_user->rolename . ', ';
-                }
-            }
-            $roles = Role::where('rolename', '<>','admin')->get();
+                $rol_usr = $edit_user->roles()->get();
+                $rol_user='';
+                foreach ($rol_usr as $role){
+                    $arr_id_rol[]=$role->id;
+                    $rol_user.=$role->rolename.', ';
+                    }
+                //dump($arr_id_rol);
+                //exit();
+                   $roles = Role::whereNotIn('id', $arr_id_rol)->
+                                          where('rolename', '<>','admin')->get(); 
+                 }
+  
+        }
+
+            //$roles = Role::where('rolename', '<>','admin')->get();
 //           dump($edit_user);
 //          exit();
             $formySwith = 3;
             return view('mylayouts.main.admin_page', compact('edit_user', 'formySwith', 'rol_user', 'roles'));
         }
-    }
+    
 
     //function for edit user
     public function editDbUser(Request $request, $id = null) {
@@ -109,36 +119,6 @@ class WorksUsersController extends Controller {
 //            dump($id);
 //            exit();
             $user = User::select('name', 'activ')->where('id', $id)->first();
-//            dump($user);
-//            exit();
-            
-            if($request->has('role_id')){
-               $user_id=User::find($id);
-                $user_role=Role::find($request->input('role_id'))->id;
-                $user_id->roles()->attach($user_role);
-               
-                
-                $rol_usr = $user_id->roles()->get();
-                $rol_user='';
-                foreach ($rol_usr as $role){
-                    $arr_id_rol[]=$role->id;
-                    $rol_user.=$role->rolename.' | ';
-                }
-
-                $roles = Role::whereNotIn('id',$arr_id_rol)->get();
-               
-//                dump($rol);
-//                exit();
-
-                $formySwith = 3;
-                $edit_user= $user_id;
-                return view('mylayouts.main.admin_page', compact( 'edit_user', 'formySwith', 'rol_user', 'roles'));
-            }else{
-                dump(10);
-                    exit();
-            }
-            dump(1);
-            exit();
             
 
             if ($request->input('activuser') === '1' && $request->input('passport') == '') {
@@ -178,5 +158,7 @@ class WorksUsersController extends Controller {
 //        dump($request->all());
 //        exit();
     }
+    
+
 
 }
