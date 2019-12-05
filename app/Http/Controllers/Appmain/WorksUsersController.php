@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use App\Otdel;
 
 class WorksUsersController extends Controller {
 
@@ -23,7 +24,7 @@ class WorksUsersController extends Controller {
             session(['count_users' => $users_count]);
 
 
-            $users = User::select('id', 'name', 'login', 'activ')->orderBY('name')->paginate(10);
+            $users = User::select('id', 'name', 'login', 'activ', 'otdel_id')->orderBY('name')->paginate(10);
 //            dump($users);
 //            exit();
             //$users->orderBY('name');

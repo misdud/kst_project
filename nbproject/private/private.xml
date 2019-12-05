@@ -6,16 +6,14 @@
             <file>file:/C:/xampp/htdocs/laravel6.kst/app/Http/Controllers/Appmain/RolesMainController.php</file>
             <file>file:/C:/xampp/htdocs/laravel6.kst/database/seeds/RolesSeeder.php</file>
             <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/admincontent/role_all.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/admincontent/default_admin_page.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/resources/lang/ru/validation.php</file>
             <file>file:/C:/xampp/htdocs/laravel6.kst/app/User.php</file>
             <file>file:/C:/xampp/htdocs/laravel6.kst/routes/web.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/admincontent/registr_user.blade.php</file>
             <file>file:/C:/xampp/htdocs/laravel6.kst/app/Role.php</file>
             <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/admincontent/role_add.blade.php</file>
             <file>file:/C:/xampp/htdocs/laravel6.kst/database/seeds/DatabaseSeeder.php</file>
             <file>file:/C:/xampp/htdocs/laravel6.kst/app/Http/Controllers/Appmain/WorksUsersController.php</file>
             <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/admincontent/users_all.blade.php</file>
+            <file>file:/C:/xampp/htdocs/laravel6.kst/app/Otdel.php</file>
             <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/admincontent/edit_user.blade.php</file>
             <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/admin_page.blade.php</file>
         </group>

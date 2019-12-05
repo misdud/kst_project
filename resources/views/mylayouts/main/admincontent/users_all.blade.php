@@ -9,9 +9,9 @@
         <table class="table table-hover">
             <thead class="thead-light">
                 <tr>
-                    <th>id</th>
                     <th>№</th>
                     <th>Имя</th>
+                    <th>Отдел</th>
                     <th>Login</th>
                     <th>Статус</th>
                     <th>Изменить</th>
@@ -20,9 +20,9 @@
             <tbody>
           @forelse ($users as $user)
           <tr>
-            <td>{{ $user->id }}</td>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $user->name }}</td>
+            <td>{{ $user->otdel->otdelname }}</td>
             <td>{{ $user->login}}</td>
              @if($user->activ)
                 <td class="table-success">Активен</td>

@@ -83,6 +83,12 @@
                 </div>
             </div>
 
+            
+            
+            
+            
+            
+            
             <div class="form-group row">
                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Изменить пароль') }}</label>
 
@@ -180,22 +186,13 @@
 
             </div>
 
-
-
-
-
-
-
             <div class="form-group row mb-0">
                 <div class="col-md-6 offset-md-4">
                     <button type="submit" class="btn btn-secondary">
                         {{ __('Добавить') }}
                     </button>
                     <a href="{{ route('show_users') }}" class="btn btn-info" role="button">Вернуться к списку</a>
-                    
-   
-                  
-                    
+
                 </div>
             </div>
         </form>
@@ -207,8 +204,8 @@
                     @csrf
 
                    <input  type="hidden" name='user_dell_id' value="{{  $edit_user['id']}}" />
-                   <button type="submit" class="btn  btn-warning">
-                        {{ __('Удалить все роли  от пользователя') }}
+                   <button type="submit" class="btn  btn-danger">
+                        {{ __('Удалить все роли  у пользователя') }}
                     </button>
                    </form>
                                     </div>

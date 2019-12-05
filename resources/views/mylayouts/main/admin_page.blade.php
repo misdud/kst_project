@@ -14,13 +14,6 @@
                             <a href="{{ route("roles_main") }}" class="list-group-item list-group-item-action bg-light">Роли пользователей </a>
                         </div>
                         <br />
-                        <div class="sidebar-heading" ><h4><b>Роли:</b></h4> </div>
-                        <div class="list-group list-group-flush">
-                            <a href="#" class="list-group-item list-group-item-action bg-light">Список всех</a>
-                            <a href="#" class="list-group-item list-group-item-action bg-light">Создать</a>
-                            <a href="#" class="list-group-item list-group-item-action bg-light">Редактировать</a>
-                        </div>
-                        <br />
                         <div class="sidebar-heading" ><h4><b>Канцелярка:</b></h4> </div>
                         <div class="list-group list-group-flush">
                             <a href="#" class="list-group-item list-group-item-action bg-light">Список всех</a>
@@ -35,7 +28,7 @@
 
         <div class="col-md-9">
     
-            <p>Сработало {{ $formySwith }}</p>            
+            <p>Сработал {{ $formySwith }}</p>            
 @switch($formySwith)
 
     @case(1)

@@ -15,5 +15,4 @@ class Role extends Model
     }
     
     
-    
 }
