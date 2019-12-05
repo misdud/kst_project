@@ -22,6 +22,10 @@ Route::post('/', 'MyAuth\MyLogincontroller@authproc')->name('mylogin');
 Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
 
     Route::middleware(['auth'])->group(function(){
+        Route::get('test', function(){
+            $a= App\User::find(2);
+            dump($a->otdel->otdelfullname);
+        });
         
         Route::get('/main','Appmain\MainPageController@showMainPage')->name('main');
         
@@ -39,6 +43,8 @@ Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
         Route::get('/usersrole/{id}', 'Appmain\RolesMainController@showUsersRole')->name('show_users_role')->where('id','[0-9]+');
         Route::match(['post', 'get'],'/roleadd/{id}', 'Appmain\RolesMainController@roleAddUser')->name('role_add');
         Route::delete('/roledelete/{id}', 'Appmain\RolesMainController@roleDeleteUser')->name('role_delete');
+        //otdel edit
+        Route::put('/otdeledit', 'Appmain\WorksUsersController@otdelEdit')->name('otdel_edit');
         
     
     

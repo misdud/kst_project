@@ -56,7 +56,7 @@
         @break
 
     @default
-       @include('mylayouts.main.admincontent.default_admin_page', ['header' => 'Работа администратора'])
+       @include('mylayouts.main.admincontent.default_admin_page', ['header' => 'Панель администратора'])
 @endswitch
             
             </div>

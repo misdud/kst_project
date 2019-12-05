@@ -11,7 +11,7 @@
                 <tr>
                     <th>№</th>
                     <th>Имя</th>
-                    <th>Отдел</th>
+                    <th>Подразделение</th>
                     <th>Login</th>
                     <th>Статус</th>
                     <th>Изменить</th>
@@ -22,7 +22,7 @@
           <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $user->name }}</td>
-            <td>{{ $user->otdel->otdelname }}</td>
+            <td>{{ $user->otdel->otdelfullname }}</td>
             <td>{{ $user->login}}</td>
              @if($user->activ)
                 <td class="table-success">Активен</td>

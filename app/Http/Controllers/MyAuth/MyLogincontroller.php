@@ -9,6 +9,7 @@ use Auth;
 class MyLogincontroller extends Controller {
 
     public function index() {
+        //return redirect(showMainPage());
         return view('auth.login');
     }
 

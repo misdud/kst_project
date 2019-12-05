@@ -39,7 +39,6 @@ class MainPageController extends Controller {
 
             // @param 2 - for show default page admin 
             $formySwith =0;
-       
             return view('mylayouts.main.admin_page', ['formySwith'=>$formySwith]);
    
     }

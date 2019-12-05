@@ -13,27 +13,31 @@ class OtdelSeeder extends Seeder
     {
         DB::table('otdels')->insert([
             [
-                'otdelname'=>'Кадры',
+                'otdelname'=>'share',
+                'otdelfullname'=>'Общая группа',
+            ],
+            [
+                'otdelname'=>'kadri',
                 'otdelfullname'=>'Отдел кадров',
             ],
             [
-                'otdelname'=>'Бухгалтерия',
+                'otdelname'=>'buh',
                 'otdelfullname'=>'Бухгалтерия',
             ],
             [
-                 'otdelname'=>'ОПЭ и ОТиЗ',
+                 'otdelname'=>'otiz',
                  'otdelfullname'=>'Отдел планово-экономический, ОТиЗ',
             ],
             [
-                 'otdelname'=>'Эксплуатация',
+                 'otdelname'=>'expluot',
                  'otdelfullname'=>'Отдел эксплуотации',
             ],
             [
-                 'otdelname'=>'ПТО и МТО',
+                 'otdelname'=>'pto',
                  'otdelfullname'=>'Производственно технический отдел',
             ],
             [
-                 'otdelname'=>'Управление',
+                 'otdelname'=>'ypravlenie',
                  'otdelfullname'=>'Управление',
             ],
         ]);

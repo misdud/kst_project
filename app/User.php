@@ -41,8 +41,8 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Role', 'roles_users');
     }
     
-//    public function otdelkst(){
-//            return $this->belongsTo('App\Otdelkst', 'otdelkst_id', 'id');
-//    }
+     public function otdel(){
+         return $this->belongsTo('App\Otdel');
+     }
     
 }

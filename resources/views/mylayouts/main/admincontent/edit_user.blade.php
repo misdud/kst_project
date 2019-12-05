@@ -83,12 +83,12 @@
                 </div>
             </div>
 
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+
             <div class="form-group row">
                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Изменить пароль') }}</label>
 
@@ -121,11 +121,6 @@
             </div>
 
 
-
-
-
-
-
             <div class="form-group row mb-0">
                 <div class="col-md-6 offset-md-4">
                     <button type="submit" class="btn btn-danger">
@@ -149,7 +144,7 @@
         <form method="POST" action="{{ route('role_add', ['id'=>$edit_user['id']]) }}">
             @method('POST')
             @csrf
-           
+
             @isset($message_role)
             <div class="alert alert-success">
                 {{ $message_role }}
@@ -157,10 +152,10 @@
             @endisset
 
             <div class="form-group row">
-                <label for="login" class="col-md-4 col-form-label text-md-right">{{ __('Роли пользователя ') }}</label>
+                <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Роли пользователя ') }}</label>
 
                 <div class="col-md-6">
-                    <input class="form-control" type="text" placeholder="{{ $rol_user}}" readonly>
+                    <input class="form-control" name='role' type="text" placeholder="{{ $rol_user}}" readonly>
                 </div>
 
             </div>
@@ -197,18 +192,75 @@
             </div>
         </form>
         <br />
-                <div class="form-group row mb-0">
-                <div class="col-md-6 offset-md-4">
-                         <form action="{{ route('role_delete',['id'=>$edit_user['id']]) }}" method="POST">
+        <div class="form-group row mb-0">
+            <div class="col-md-6 offset-md-4">
+                <form action="{{ route('role_delete',['id'=>$edit_user['id']]) }}" method="POST">
                     @method('DELETE')
                     @csrf
 
-                   <input  type="hidden" name='user_dell_id' value="{{  $edit_user['id']}}" />
-                   <button type="submit" class="btn  btn-danger">
+                    <input  type="hidden" name='user_dell_id' value="{{  $edit_user['id']}}" />
+                    <button type="submit" class="btn  btn-danger">
                         {{ __('Удалить все роли  у пользователя') }}
                     </button>
-                   </form>
-                                    </div>
+                </form>
             </div>
+        </div>
+
+    </div>
+</div>
+<br />
+<br />
+
+<div class="card">
+    <div class="card-header">{{ __('Указание отдела для  пользователя') }}</div>
+
+    <div class="card-body justify-content-center">
+        <form method="POST" action="{{ route('otdel_edit') }}">
+            @method('PUT')
+            @csrf
+
+            <div class="form-group row">
+                <label for="otdel" class="col-md-4 col-form-label text-md-right">{{ __('Текущий отдел работы пользователя') }}</label>
+
+                <div class="col-md-6">
+                    <input class="form-control"  name ='otdel' type="text" placeholder="{{ $edit_user->otdel->otdelfullname }}" readonly>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+
+                <label for="otdel_id" class="col-md-4 col-form-label text-md-right">{{ __('Выберите для смены текущего') }}</label>
+
+                <div class="col-md-6">
+
+                    <select name='otdel_id' class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                        @if($otdels->count()>0)
+                        @foreach($otdels as $otdel)
+                        <option value="{{ $otdel->id }}">{{ $otdel->otdelfullname }}</option>
+
+                        @endforeach
+                        @else
+                        Отделы не найдены (требуется создать)
+                        @endif
+                    </select>
+                     <input  type="hidden" name='user_id' value="{{  $edit_user['id']}}" />
+                </div>
+
+            </div>
+
+            <div class="form-group row mb-0">
+                <div class="col-md-6 offset-md-4">
+                    <button type="submit" class="btn btn-secondary">
+                        {{ __('Изменить') }}
+                    </button>
+                    <a href="{{ route('show_users') }}" class="btn btn-info" role="button">Вернуться к списку</a>
+
+                </div>
+            </div>
+        </form>
+ 
+  
+
     </div>
 </div>

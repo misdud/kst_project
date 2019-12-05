@@ -24,7 +24,7 @@ class WorksUsersController extends Controller {
             session(['count_users' => $users_count]);
 
 
-            $users = User::select('id', 'name', 'login', 'activ', 'otdel_id')->orderBY('name')->paginate(10);
+            $users = User::with('otdel')->select('id', 'name', 'login', 'activ', 'otdel_id')->orderBY('name')->paginate(10);
 //            dump($users);
 //            exit();
             //$users->orderBY('name');
@@ -43,6 +43,7 @@ class WorksUsersController extends Controller {
     public function registr() {
 
         if (view()->exists('mylayouts.main.admin_page')) {
+         // @param 2 - for registr users
             $formySwith = 2;
             return view('mylayouts.main.admin_page', ['formySwith' => $formySwith]);
         } else {
@@ -103,10 +104,9 @@ class WorksUsersController extends Controller {
             }
         }
 
-        //$roles = Role::where('rolename', '<>','admin')->get();
-
+        $otdels = Otdel::select('id', 'otdelname', 'otdelfullname')->get();
         $formySwith = 3;
-        return view('mylayouts.main.admin_page', compact('edit_user', 'formySwith', 'rol_user', 'roles'));
+        return view('mylayouts.main.admin_page', compact('edit_user', 'formySwith', 'rol_user', 'roles', 'otdels'));
     }
 
     //function for edit user
@@ -155,6 +155,17 @@ class WorksUsersController extends Controller {
 //        dump($id);
 //        dump($request->all());
 //        exit();
+    }
+    
+    public function otdelEdit(Request $request){
+        if($request->isMethod('PUT')){
+            $user = User::findOrFail($request->input('user_id'));
+            $otdel = Otdel::findOrFail($request->input('otdel_id'));
+            $user->otdel()->associate($otdel)->save(); 
+            return redirect()->back();
+        }
+         
+        
     }
 
 }
