@@ -13,7 +13,9 @@
             <file>file:/C:/xampp/htdocs/laravel6.kst/database/seeds/DatabaseSeeder.php</file>
             <file>file:/C:/xampp/htdocs/laravel6.kst/app/Http/Controllers/Appmain/WorksUsersController.php</file>
             <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/admincontent/users_all.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/app/Otdel.php</file>
+            <file>file:/C:/xampp/htdocs/laravel6.kst/database/migrations/2014_10_12_000000_create_users_table.php</file>
+            <file>file:/C:/xampp/htdocs/laravel6.kst/database/migrations/2019_12_01_080416_create_roles_users_table.php</file>
+            <file>file:/C:/xampp/htdocs/laravel6.kst/database/migrations/2019_12_01_075300_create_roles_table.php</file>
             <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/admincontent/edit_user.blade.php</file>
             <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/admin_page.blade.php</file>
         </group>

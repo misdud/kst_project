@@ -22,10 +22,6 @@ Route::post('/', 'MyAuth\MyLogincontroller@authproc')->name('mylogin');
 Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
 
     Route::middleware(['auth'])->group(function(){
-        Route::get('test', function(){
-            $a= App\User::find(2);
-            dump($a->otdel->otdelfullname);
-        });
         
         Route::get('/main','Appmain\MainPageController@showMainPage')->name('main');
         
@@ -46,10 +42,14 @@ Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
         //otdel edit
         Route::put('/otdeledit', 'Appmain\WorksUsersController@otdelEdit')->name('otdel_edit');
         
-    
-    
-    
-    
+        
+        // For Works zakaz (open\close) - list
+        Route::get('listzakaz', 'AppKancler\ZakazMainController@showListZakaz')->name('zakaz_list');
+        Route::get('zakazcreat', 'AppKancler\ZakazMainController@showFormZakaz')->name('zakaz_creat');
+        Route::post('zakcreat', 'AppKancler\ZakazMainController@createZakaz')->name('zakaz_creat_regist');
+        Route::get('zakedit/{id}/edit', 'AppKancler\ZakazMainController@editZakaz')->name('zakaz_edit');
+        Route::put('zakedit/{id}', 'AppKancler\ZakazMainController@editZakazbd')->name('zakaz_edit_db');
+
 });
 
 //Auth::routes();

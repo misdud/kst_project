@@ -16,7 +16,7 @@
                         <br />
                         <div class="sidebar-heading" ><h4><b>Канцелярка:</b></h4> </div>
                         <div class="list-group list-group-flush">
-                            <a href="#" class="list-group-item list-group-item-action bg-light">Список всех</a>
+                            <a href="{{ route("zakaz_list") }}" class="list-group-item list-group-item-action bg-light">Управление заказами</a>
                             <a href="#" class="list-group-item list-group-item-action bg-light">Создать</a>
                             <a href="#" class="list-group-item list-group-item-action bg-light">Редактировать</a>
                         </div>
@@ -53,6 +53,17 @@
         
    @case(6)
         @include( 'mylayouts.main.admincontent.role_list', ['header' => 'Пользователи роли'])
+        @break
+        
+        {{--For zakaz --}}
+   @case(7)
+        @include( 'mylayouts.main.forzakazkanc.all_list_zakaz', ['header' => 'Заявочные компании'])
+        @break
+   @case(8)
+        @include( 'mylayouts.main.forzakazkanc.form_create', ['header' => 'Открытие заявки'])
+        @break
+   @case(9)
+        @include( 'mylayouts.main.forzakazkanc.edit_zakaz', ['header' => 'Изменение статуса'])
         @break
 
     @default
