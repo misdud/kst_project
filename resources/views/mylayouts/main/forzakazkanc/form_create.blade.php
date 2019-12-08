@@ -6,15 +6,7 @@
                     <form method="POST" action="{{ route('zakaz_creat_regist') }}">
                         @csrf
                         @method('POST')
-                          @if (session('message_zaivka')==1)
-                          <div class="alert alert-success">
-                              <p>Заявка открыта</p>
-                          </div>
-                          @else
-                          <div class="alert alert-danger">
-                              <p>Заявку нельзя создать так как есть отрытая</p>
-                          </div>
-                          @endif
+
                         <div class="form-group row">
                             <label for="zakazname" class="col-md-4 col-form-label text-md-right">{{ __('Имя заявки (можно не указывать)') }}</label>
 
@@ -47,6 +39,7 @@
                                 <a href="{{ route('zakaz_list') }}" class="btn btn-info" role="button">Вернуться назад</a>
                             </div>
                         </div>
+ 
                     </form>
                 </div>
             </div>

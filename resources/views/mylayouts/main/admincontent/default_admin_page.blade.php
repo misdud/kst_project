@@ -23,7 +23,7 @@
             </div>
             <div class="col-4">
                 <div class="jumbotron">
-                    <div class=' text-right'><a href="{{ route('roles_main')}}" class="btn btn-outline-primary btn-block" role="button"> $ Заявки на канцелярию</a></div>
+                    <div class=' text-right'><a href="{{ route('zakaz_list')}}" class="btn btn-outline-primary btn-block" role="button"> $ Заявки на канцелярию</a></div>
                 </div>
             </div>
         </div>

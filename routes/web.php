@@ -47,8 +47,12 @@ Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
         Route::get('listzakaz', 'AppKancler\ZakazMainController@showListZakaz')->name('zakaz_list');
         Route::get('zakazcreat', 'AppKancler\ZakazMainController@showFormZakaz')->name('zakaz_creat');
         Route::post('zakcreat', 'AppKancler\ZakazMainController@createZakaz')->name('zakaz_creat_regist');
-        Route::get('zakedit/{id}/edit', 'AppKancler\ZakazMainController@editZakaz')->name('zakaz_edit');
-        Route::put('zakedit/{id}', 'AppKancler\ZakazMainController@editZakazbd')->name('zakaz_edit_db');
+        Route::get('zakedit/{id}/edit', 'AppKancler\ZakazMainController@editZakaz')->name('zakaz_edit')->where('id','[0-9]+');
+        Route::put('zakedit/{id}', 'AppKancler\ZakazMainController@editZakazdb')->name('zakaz_edit_db');
+        
+        //works derectory product
+        Route::resource('products', 'AppKancler\ProductController');
+        
 
 });
 

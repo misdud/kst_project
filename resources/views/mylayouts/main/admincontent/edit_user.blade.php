@@ -43,7 +43,7 @@
                 <label for="login" class="col-md-4 col-form-label text-md-right">{{ __('Логин') }}</label>
 
                 <div class="col-md-6">
-                    <input id="login" type="text" class="form-control" name="login" value="{{ $edit_user['login'] ?? 'нет данных' }}" placeholder="{{ $edit_user['activ'] ?? 'нет данных' }}" readonly>
+                    <input id="login" type="text" class="form-control" name="login" value="{{ $edit_user['login'] ?? 'нет данных' }}"  readonly>
 
 
                 </div>

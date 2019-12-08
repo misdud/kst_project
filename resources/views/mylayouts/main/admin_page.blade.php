@@ -17,8 +17,11 @@
                         <div class="sidebar-heading" ><h4><b>Канцелярка:</b></h4> </div>
                         <div class="list-group list-group-flush">
                             <a href="{{ route("zakaz_list") }}" class="list-group-item list-group-item-action bg-light">Управление заказами</a>
-                            <a href="#" class="list-group-item list-group-item-action bg-light">Создать</a>
-                            <a href="#" class="list-group-item list-group-item-action bg-light">Редактировать</a>
+                        </div>
+                        <br />
+                        <div class="sidebar-heading" ><h4><b>Номенклатура:</b></h4> </div>
+                        <div class="list-group list-group-flush">
+                            <a href="{{ route("products.index") }}" class="list-group-item list-group-item-action bg-light">Управление справочником канцелярии</a>
                         </div>
                     </div>
 
@@ -64,6 +67,17 @@
         @break
    @case(9)
         @include( 'mylayouts.main.forzakazkanc.edit_zakaz', ['header' => 'Изменение статуса'])
+        @break
+        
+        {{-- For works product --}}
+   @case(10)
+        @include( 'mylayouts.main.forworksproduct.all_list_product', ['header' => 'Работа с справочником канцелярии'])
+        @break
+   @case(11)
+        @include( 'mylayouts.main.forworksproduct.show_form_create', ['header' => 'Работа с справочником канцелярии'])
+        @break
+   @case(12)
+        @include( 'mylayouts.main.forworksproduct.show_form_edit', ['header' => 'Изменение товара'])
         @break
 
     @default
