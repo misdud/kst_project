@@ -11,4 +11,8 @@ class Otdel extends Model
         return $this->hasMany('App\User', 'otdel_id', 'id');
     }
     
+    public function orders(){
+        return $this->hasMany('App\Order', 'order_id', 'id');
+    }
+    
 }

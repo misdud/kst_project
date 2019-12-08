@@ -14,7 +14,7 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $products = Product::select('id', 'productname', 'units', 'productactiv')->orderBy('productname')->paginate(15);
+        $products = Product::select('id', 'productname', 'units', 'productactiv')->orderBy('productname')->paginate(10);
         $product_count = Product::count();
 //        dump($products);
 //        exit();

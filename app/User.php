@@ -44,5 +44,8 @@ class User extends Authenticatable
      public function otdel(){
          return $this->belongsTo('App\Otdel');
      }
-    
+     
+        public function orders(){
+         return $this->hasMany('App\Order', 'user_id', 'id');
+     }   
 }

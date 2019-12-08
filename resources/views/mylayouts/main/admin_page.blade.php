@@ -23,6 +23,13 @@
                         <div class="list-group list-group-flush">
                             <a href="{{ route("products.index") }}" class="list-group-item list-group-item-action bg-light">Управление справочником канцелярии</a>
                         </div>
+                        <br />
+                        <div class="sidebar-heading" ><h4><b>Заказы на канцелярию:</b></h4> </div>
+                        <div class="list-group list-group-flush">
+                            <a href="{{ route("orders.index") }}" class="list-group-item list-group-item-action bg-light">Создание заказа</a>
+                            <a href="{{ route("orders.index") }}" class="list-group-item list-group-item-action bg-light">Все заказы</a>
+                            <a href="{{ route("orders.index") }}" class="list-group-item list-group-item-action bg-light">Мои заказы</a>
+                        </div>
                     </div>
 
                 </nav>
@@ -78,6 +85,14 @@
         @break
    @case(12)
         @include( 'mylayouts.main.forworksproduct.show_form_edit', ['header' => 'Изменение товара'])
+        @break
+        
+        {{-- For works orders --}}
+  @case(13)
+        @include( 'mylayouts.main.for_orders.all_list_order_product', ['header' => 'Выбор товара'])
+        @break
+  @case(14)
+        @include( 'mylayouts.main.for_orders.order_product_show', ['header' => 'Оформление заказа'])
         @break
 
     @default

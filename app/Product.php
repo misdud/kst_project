@@ -11,5 +11,7 @@ class Product extends Model
         'productname', 'productdiscript', 'units', 'productactiv'
     ];
     
-    
+    public function orders(){
+        return $this->hasMany('App\Order', 'product_id', 'id');
+    }
 }

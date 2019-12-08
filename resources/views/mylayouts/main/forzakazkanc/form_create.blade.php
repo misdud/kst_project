@@ -20,7 +20,7 @@
                             <label for="dodatezaivka" class="col-md-4 col-form-label text-md-right">{{ __('Дата закрытия заявки') }}</label>
 
                             <div class="col-md-6">
-                                <input id="login" type="text" class="form-control @error('dodatezaivka') is-invalid @enderror" name="dodatezaivka" value="{{ old('dodatezaivka') }}" required autocomplete="dodatezaivka">
+                                <input id="login" type="date" class="form-control @error('dodatezaivka') is-invalid @enderror" name="dodatezaivka" value="{{ old('dodatezaivka') }}" required autocomplete="dodatezaivka">
 
                                 @error('dodatezaivka')
                                     <span class="invalid-feedback" role="alert">

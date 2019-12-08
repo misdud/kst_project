@@ -13,7 +13,7 @@
         @if(count($zakazs)>0)
         <h2>Список всех заявак</h2>
         
-        <p class="text-info">В таблице представлены заявочные компании на канцелярию, всего({{ $zakazs_count?? '&'}}) :</p>            
+        <p class="text-info">В таблице представлены заявочные компании на канцелярию, всего({{ $zakazs_count ?? '&'}}) :</p>            
         
         <table class="table table-hover">
             <thead class="thead-light">

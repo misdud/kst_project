@@ -13,7 +13,7 @@ class ZakazMainController extends Controller {
         //закрытие / открытие если открытых нет
 
         $zakazs = Zakaz::select('id', 'zakazname', 'zakazactiv', 'dodate', 'created_at')->orderBy('created_at', 'desc')->paginate(10);
-        $zakazs_count = $zakazs->count()??0;
+        $zakazs_count = Zakaz::count();
         $isIssetzaivka = Zakaz::select('id', 'zakazactiv')->where('zakazactiv', 1)->orderBy('created_at', 'desc')->first();
         if ($isIssetzaivka != NULL) {
             $isissetzakaz = TRUE;
@@ -45,6 +45,7 @@ class ZakazMainController extends Controller {
             $this->validate($request, ['dodatezaivka' => 'required|date_format:Y-m-d|after:+5 day']);
 
             $zakaz = Zakaz::select('zakazactiv')->where('zakazactiv', 1)->orderBy('id', 'desc')->limit(1)->get();
+
             if ($zakaz->isEmpty()) {
                 Zakaz::create([
                     'zakazname' => $request->input('zakazname'),

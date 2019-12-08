@@ -28,17 +28,21 @@ Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
         //sitting users for admin
         Route::get('/users','Appmain\WorksUsersController@show_users')->name('show_users');
         Route::get('/registr','Appmain\WorksUsersController@registr')->name('registr_user');
+        
         //create user
         Route::post('/registr','Appmain\WorksUsersController@create');
+        
         //edit  user
         Route::get('/edituser/{id}','Appmain\WorksUsersController@edit')->name('edit_user')->where('id','[0-9]+');
         Route::match(['get', 'put'],'/edituseru/{id}','Appmain\WorksUsersController@editDbUser')->name('edit_bd_user')->where('id', '[0-9]+');
+        
         //works roles
         Route::get('/roles', 'Appmain\RolesMainController@show')->name('roles_main');
         Route::match(['get', 'post'],'/rolecreat', 'Appmain\RolesMainController@rolecreat')->name('role_creat');
         Route::get('/usersrole/{id}', 'Appmain\RolesMainController@showUsersRole')->name('show_users_role')->where('id','[0-9]+');
         Route::match(['post', 'get'],'/roleadd/{id}', 'Appmain\RolesMainController@roleAddUser')->name('role_add');
         Route::delete('/roledelete/{id}', 'Appmain\RolesMainController@roleDeleteUser')->name('role_delete');
+        
         //otdel edit
         Route::put('/otdeledit', 'Appmain\WorksUsersController@otdelEdit')->name('otdel_edit');
         
@@ -51,7 +55,10 @@ Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
         Route::put('zakedit/{id}', 'AppKancler\ZakazMainController@editZakazdb')->name('zakaz_edit_db');
         
         //works derectory product
-        Route::resource('products', 'AppKancler\ProductController');
+        Route::resource('products', 'AppKancler\ProductController')->except(['show', 'destroy']);
+        
+        //for works orders
+        Route::resource('orders', 'AppKancler\OrderController');
         
 
 });
