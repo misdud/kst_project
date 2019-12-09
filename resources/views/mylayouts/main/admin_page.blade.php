@@ -27,8 +27,8 @@
                         <div class="sidebar-heading" ><h4><b>Заказы на канцелярию:</b></h4> </div>
                         <div class="list-group list-group-flush">
                             <a href="{{ route("orders.index") }}" class="list-group-item list-group-item-action bg-light">Создание заказа</a>
-                            <a href="{{ route("orders.index") }}" class="list-group-item list-group-item-action bg-light">Все заказы</a>
-                            <a href="{{ route("orders.index") }}" class="list-group-item list-group-item-action bg-light">Мои заказы</a>
+                            <a href="{{ route("myorders.index") }}" class="list-group-item list-group-item-action bg-light">Мои заказы</a>
+                            <a href="{{ route("orders.index") }}" class="list-group-item list-group-item-action bg-light">Заказы моего отдела</a>
                         </div>
                     </div>
 
@@ -93,6 +93,15 @@
         @break
   @case(14)
         @include( 'mylayouts.main.for_orders.order_product_show', ['header' => 'Оформление заказа'])
+        @break
+  @case(15)
+        @include( 'mylayouts.main.for_orders.my_orders_list', ['header' => 'Участие в заявочных компаниях'])
+        @break
+  @case(16)
+        @include( 'mylayouts.main.for_orders.no_orders', ['header' => 'Ваши заказы'])
+        @break
+  @case(17)
+        @include( 'mylayouts.main.for_orders.my_orders_in_zakaz', ['header' => 'Ваши заказы'])
         @break
 
     @default

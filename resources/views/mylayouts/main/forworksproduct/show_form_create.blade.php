@@ -63,4 +63,4 @@
         </form>
     </div>
 </div>
- <pre>{{ var_dump(Session::all())}}</pre>
+

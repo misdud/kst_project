@@ -7,7 +7,7 @@
         <br/>
         @else
          <br />
-         <p class="p-3 mb-2 bg-warning text-dark text-center">Объявить новую заявочную компанию нельзя, так-как уже есть АКТИВНАЯ.</p>
+         <p class="p-3 mb-2 bg-warning text-dark text-center">Сейчас объявить новую заявочную компанию нельзя, так-как уже есть АКТИВНАЯ.</p>
          <br />
          @endif
         @if(count($zakazs)>0)

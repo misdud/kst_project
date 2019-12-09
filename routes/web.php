@@ -58,7 +58,8 @@ Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
         Route::resource('products', 'AppKancler\ProductController')->except(['show', 'destroy']);
         
         //for works orders
-        Route::resource('orders', 'AppKancler\OrderController');
+        Route::resource('orders', 'AppKancler\OrderController')->only(['index', 'store', 'show']);
+        Route::resource('myorders', 'AppKancler\MyOrderResourseController');
         
 
 });

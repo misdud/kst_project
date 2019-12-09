@@ -38,12 +38,13 @@
             
          <div class="form-group row">
                 <label for="count" class="col-md-4 col-form-label text-md-right">{{ __('Количество штук') }}</label>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <input id="count" type="number" min="1" max="10" class="form-control @error('productname') is-invalid @enderror" name="count" value="0" required >
                 </div>
             </div>
 
             <input type="hidden" name="product_id"  value="{{$product->id}}">
+
             <div class="form-group row mb-0">
                 <div class="col-md-6 offset-md-4">
                     <button type="submit" class="btn btn-danger">

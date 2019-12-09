@@ -14,7 +14,7 @@
         
         @if(session('order'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Товар << <span class="text-primary">{{ session('order') }}</span> >> добавлен в заказ!</strong> <a href="{{ route('myorders.index')}}" class="alert-link">Посмотреть свои заказы</a>.
+            <strong>Товар << <span class="text-primary">{{ session('order') }}</span> >> добавлен в закупку!</strong> <a href="#" class="alert-link">Корзина</a>.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>

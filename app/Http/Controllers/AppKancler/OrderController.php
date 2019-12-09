@@ -70,6 +70,8 @@ class OrderController extends Controller {
                 'otdel_id' => $user->otdel_id,
             ]);
             
+            return redirect()->route('orders.index')->with('order', $data['productname']);
+            
         } else {
             return redirect()->back();
         }
