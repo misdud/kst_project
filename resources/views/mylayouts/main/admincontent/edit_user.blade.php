@@ -140,7 +140,6 @@
     <div class="card-header">{{ __('Роли пользователя') }}</div>
 
     <div class="card-body justify-content-center">
-        {{  $edit_user['id'] }}
         <form method="POST" action="{{ route('role_add', ['id'=>$edit_user['id']]) }}">
             @method('POST')
             @csrf

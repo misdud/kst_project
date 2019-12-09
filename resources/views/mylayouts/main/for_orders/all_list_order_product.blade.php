@@ -2,15 +2,19 @@
     <div class="card-header">{{$header}}</div>
     <div class="card-body">
 
+         <div class="row mx-md-n2">
         @if($is_isset_zakaz==TRUE)
-        <br />
-        <p class="p-3 mb-2 bg-light  text-center border border-success rounded-pill">Заявочная компания объявлена  до <b>{{  date('d.m.Y', strtotime($do_date_zakaz))}}</b></p>
-        <br />
+
+         <div class="d-inline p-2 mt-3 ml-2 mb-3 rounded-left bg-secondary text-white"><h5><span class="align-middle">Заявочная компания:</span></h5></div>
+         <div class="d-inline p-2 mt-3 ml-1 mb-3  rounded-right bg-success text-white"><h5> <span class="align-middle">открыта до {{ date('d.m.Y', strtotime($do_date_zakaz))}}</span></h5></div>
+
         @else
-        <br />
-        <p class="p-3 mb-2 bg-warning text-dark text-center">Создать заказ нельзя, так-как не найдено открытой заявочной компании</p>
-        <br />
+
+         <div class="d-inline p-2 mt-3 ml-2 mb-3 rounded-left bg-secondary text-white"><h5><span class="align-middle">Заявочная компания:</span></h5></div>
+         <div class="d-inline p-2 mt-3 ml-1 mb-3  rounded-right bg-danger text-white"><h5>  <span class="align-middle">закрыта</span></h5></div>
+
         @endif
+         </div>
         
         @if(session('order'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">

@@ -4,7 +4,7 @@
 
         <div class="row mx-md-n2">
             <br />
-            <div class="d-inline p-2 bg-primary text-white rounded-pill"><h5>У Вас пока нет заказов, попробуйте создать</h5></div>
+            <div class="d-inline p-2  text-danger "><h5>У Вас пока нет заказов, попробуйте создать.</h5></div>
         </div>
 <hr />
         <div>

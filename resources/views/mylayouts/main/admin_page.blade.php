@@ -14,7 +14,7 @@
                             <a href="{{ route("roles_main") }}" class="list-group-item list-group-item-action bg-light">Роли пользователей </a>
                         </div>
                         <br />
-                        <div class="sidebar-heading" ><h4><b>Канцелярка:</b></h4> </div>
+                        <div class="sidebar-heading" ><h4><b>Компании:</b></h4> </div>
                         <div class="list-group list-group-flush">
                             <a href="{{ route("zakaz_list") }}" class="list-group-item list-group-item-action bg-light">Управление заказами</a>
                         </div>
@@ -24,7 +24,7 @@
                             <a href="{{ route("products.index") }}" class="list-group-item list-group-item-action bg-light">Управление справочником канцелярии</a>
                         </div>
                         <br />
-                        <div class="sidebar-heading" ><h4><b>Заказы на канцелярию:</b></h4> </div>
+                        <div class="sidebar-heading" ><h4><b>Заказы канцелярии:</b></h4> </div>
                         <div class="list-group list-group-flush">
                             <a href="{{ route("orders.index") }}" class="list-group-item list-group-item-action bg-light">Создание заказа</a>
                             <a href="{{ route("myorders.index") }}" class="list-group-item list-group-item-action bg-light">Мои заказы</a>
@@ -101,7 +101,10 @@
         @include( 'mylayouts.main.for_orders.no_orders', ['header' => 'Ваши заказы'])
         @break
   @case(17)
-        @include( 'mylayouts.main.for_orders.my_orders_in_zakaz', ['header' => 'Ваши заказы'])
+        @include( 'mylayouts.main.for_orders.my_orders_in_zakaz', ['header' => 'Ваши заказы в выбранной заявочной компании'])
+        @break
+  @case(18)
+        @include( 'mylayouts.main.for_orders.show_orders_old', ['header' => 'Ваши заказы в выбранной заявочной компании'])
         @break
 
     @default

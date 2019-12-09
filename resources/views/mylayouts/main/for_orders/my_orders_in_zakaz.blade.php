@@ -2,62 +2,93 @@
     <div class="card-header">{{$header}}</div>
     <div class="card-body">
 
-        @if($is_isset_zakaz==TRUE)
+
+        <div class="row mx-md-n2">
+            <div class="d-inline p-2 mt-3 ml-2 mb-3 rounded-left bg-secondary text-white"><h5><span class="align-middle">Ваш отдел:</span></h5></div>
+            <div class="d-inline p-2 mt-3 ml-1 mb-3  rounded-right bg-info text-white"><h5><span class="align-middle">{{ $otdel ?? ''}}</span></h5></div>
+        </div>  
         <br />
-        <p class="p-3 mb-2 bg-light  text-center border border-success rounded-pill">Заявочная компания объявлена  до <b>{{  date('d.m.Y', strtotime($do_date_zakaz))}}</b></p>
-        <br />
-        @else
-        <br />
-        <p class="p-3 mb-2 bg-warning text-dark text-center">Создать заказ нельзя, так-как не найдено открытой заявочной компании</p>
-        <br />
-        @endif
-        
-        @if(session('order'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Товар << <span class="text-primary">{{ session('order') }}</span> >> добавлен в закупку!</strong> <a href="#" class="alert-link">Корзина</a>.
+        @if(session('msg'))
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>Товар <span class="text-danger">{{ session('msg') }}</span> был удалён!</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         @endif
-
-        @if(count($products)>0)
-        <h2>Выберите товар из справочника "Канцелярия" </h2>
-
-        <p class="text-info">Всего товаров {{ $product_count?? '&'}}:</p>            
+      @if(session('msg2'))
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>Количество товара<span class="text-danger"> {{ session('msg2') }} </span>изменено.</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+        <h5 class="text-info">Всего найдено {{ count($orders_zakaz) ?? ''}} из них:</h5>            
 
         <table class="table table-hover">
             <thead class="thead-light">
                 <tr>
                     <th>№</th>
-                    <th>Название товара</th>
-                    <th>Единица измерения</th>
-                    <th>Действие</th>
+                    <th>Название</th>
+                    <th>Заказано</th>
+                    <th>Редактировать</th>
+                    <th>Одобрено</th>
+                    <th>Статус</th>
+          
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                @endif  
-
-                @forelse ($products as $product)
+                @foreach ($orders_zakaz as $order)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $product->productname }}</td>
-                    <td>{{ $product->units }}</td>
-                    @if($is_isset_zakaz==TRUE)
-                    <td><a href="{{ route('orders.show',['order'=>$product->id])}}" class="btn btn-outline-secondary" role="button">Заказать</a></td>
+                    <td>{{ $order->discriptorder }}</td>
+                    <td>{{ $order->count }}</td>
+                    
+                     @if($order->valid == 'no')
+                    <td>
+                        <div >
+                        <form action="{{ route('myorders.update',['myorder'=>$order['id']]) }}" method="POST">
+                            @method('PUT')
+                            @csrf
+
+                            <input style="width: 50px;" type="number" name='mycount' max="10" min="1" minlength="5" value="{{  $order->count}}" />
+                            <input type="submit" value="Изменить" />
+       
+                        </form>
+                        </div>
+                    </td>
                     @else
-                    <td><a href="{{ route('orders.index')}}" class="btn btn-outline-secondary" role="button">Отказано</a></td>
+                    <td>Уже проверен</td>
+                    @endif
+
+                    <td>{{ $order->count_good}}</td>
+                    
+                    @if($order->valid == 'no')
+                    
+                    <td class="table-warning">Не проверен</td>
+                    <td>
+                        <form action="{{ route('myorders.destroy',['myorder'=>$order['id']]) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+
+                            <input  type="hidden" name='product_id' value="{{  $order->product_id}}" />
+                            <button type="submit" class="btn  btn-danger">
+                                {{ __('Удалить') }}
+                            </button>
+                        </form>
+                    </td>
+
+                    @else
+                    <td class="table-success">Проверен</td>
+                    <td ></td>
+                  
                     @endif
                 </tr>
-                @empty
-            <p>Товары не найдены</p>
-            @endforelse
-
+                @endforeach
             </tbody>
         </table> 
-        <div class="pagination justify-content-center">{{ $products->links() }}</div>
-
-
-
+        <a href="{{ route('myorders.index') }}" class="btn btn-info" role="button">Вернуться назад</a>
     </div>
 </div>

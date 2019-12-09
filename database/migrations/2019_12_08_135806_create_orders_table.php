@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->string('discriptorder');
             $table->smallInteger('count')->unsigned();
+            $table->smallInteger('count_goot')->unsigned()->default(0);
             $table->enum('valid', ['no', 'yes'])->default('no');
             
             $table->integer('user_id')->unsigned()->index()->default(0);

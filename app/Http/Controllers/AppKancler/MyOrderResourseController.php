@@ -29,17 +29,17 @@ class MyOrderResourseController extends Controller {
             foreach ($group as $k => $grop) {
                 $arr_zakaz[] .= $k;
             }
-            $all_zakaz_user = Zakaz::select('id', 'zakazname','zakazactiv','dodate','created_at')->whereIn('id', $arr_zakaz)->latest()->paginate(10);
+            $all_zakaz_user = Zakaz::select('id', 'zakazname', 'zakazactiv', 'dodate', 'created_at')->whereIn('id', $arr_zakaz)->latest()->paginate(10);
 //            dump($arr_zakaz);
 //            dump($all_zakaz_user);
-            if(view()->exists('mylayouts.main.admin_page')){
+            if (view()->exists('mylayouts.main.admin_page')) {
                 $otdel = $user->otdel->otdelfullname;
                 //for user order list
-                $formySwith=15;
+                $formySwith = 15;
                 return view('mylayouts.main.admin_page', compact('all_zakaz_user', 'formySwith', 'otdel'));
             }
         } else {
-            $formySwith=16;
+            $formySwith = 16;
             return view('mylayouts.main.admin_page', compact('formySwith'));
         }
     }
@@ -70,7 +70,21 @@ class MyOrderResourseController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        //
+
+        $user = Auth::user();
+        $id_user = $user->id;
+        $orders_user = Order::select('id', 'discriptorder', 'count', 'count_good', 'valid', 'user_id', 'created_at', 'zakaz_id')
+                        ->where('zakaz_id', $id)
+                        ->where('user_id', $id_user)->get();
+        $otdel = $user->otdel->otdelfullname;
+        if (view()->exists('mylayouts.main.for_orders.my_orders_in_zakaz')) {
+            //for show my order in zakaz
+            $formySwith = 18;
+            return view('mylayouts.main.admin_page', compact('formySwith', 'otdel', 'orders_user'));
+        } else {
+
+            return redirect()->back();
+        }
     }
 
     /**
@@ -80,16 +94,22 @@ class MyOrderResourseController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        
-        $user=Auth::user();
-        $id_user=$user->id;
-        $orders_zakaz = Order::select('id', 'discriptorder', 'count', 'valid', 'user_id', 'product_id', 'zakaz_id' )->where('zakaz_id', $id)
-                ->where('user_id', $id_user)->get();
-        dump($orders_zakaz);
-        exit();
-        
-        
-        
+
+        $user = Auth::user();
+        $id_user = $user->id;
+        $orders_zakaz = Order::select('id', 'discriptorder', 'count', 'count_good',  'valid', 'user_id', 'product_id', 'zakaz_id')
+                        ->where('zakaz_id', $id)
+                        ->where('user_id', $id_user)->latest()->get();
+        $otdel = $user->otdel->otdelfullname;
+        if (view()->exists('mylayouts.main.for_orders.my_orders_in_zakaz')) {
+            //for show my order in zakaz
+            $formySwith = 17;
+            return view('mylayouts.main.admin_page', compact('formySwith', 'otdel', 'orders_zakaz'));
+        } else {
+            dump($orders_zakaz);
+            exit();
+            return redirect()->back();
+        }
     }
 
     /**
@@ -100,7 +120,15 @@ class MyOrderResourseController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+        $order_count = Order::select('id', 'count','discriptorder')->where('id', $id)->first(); 
+        if($order_count->count == $request->input('mycount')){
+            return redirect()->back();
+        }
+        $order = Order::where('id', $id)->update([
+            'count'=>$request->input('mycount'),
+        ]);
+        
+        return redirect()->back()->with('msg2',$order_count->discriptorder);
     }
 
     /**
@@ -109,8 +137,10 @@ class MyOrderResourseController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
-        //
+    public function destroy(Request $request, $id) {
+        $product = Product::findOrFail($request->input('product_id'));
+        Order::where('id', $id)->delete();
+        return redirect()->back()->with('msg',$product->productname);
     }
 
 }
