@@ -32,11 +32,12 @@ class MyOrderResourseController extends Controller {
             $all_zakaz_user = Zakaz::select('id', 'zakazname', 'zakazactiv', 'dodate', 'created_at')->whereIn('id', $arr_zakaz)->latest()->paginate(10);
 //            dump($arr_zakaz);
 //            dump($all_zakaz_user);
-            if (view()->exists('mylayouts.main.admin_page')) {
+              $all_count=$group->count();
+            if (view()->exists('mylayouts.main.for_orders.my_orders_list')) {
                 $otdel = $user->otdel->otdelfullname;
                 //for user order list
                 $formySwith = 15;
-                return view('mylayouts.main.admin_page', compact('all_zakaz_user', 'formySwith', 'otdel'));
+                return view('mylayouts.main.admin_page', compact('all_zakaz_user', 'formySwith', 'otdel','all_count'));
             }
         } else {
             $formySwith = 16;

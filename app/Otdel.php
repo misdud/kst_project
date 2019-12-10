@@ -12,7 +12,7 @@ class Otdel extends Model
     }
     
     public function orders(){
-        return $this->hasMany('App\Order', 'order_id', 'id');
+        return $this->hasMany('App\Order', 'otdel_id', 'id');
     }
     
 }

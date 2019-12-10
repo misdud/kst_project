@@ -24,7 +24,8 @@
             </button>
         </div>
         @endif
-        <h5 class="text-info">Всего найдено {{ count($orders_zakaz) ?? ''}} из них:</h5>            
+        @if(count($orders_zakaz)>0)
+        <h5 class="text-info">Всего найдено {{ count($orders_zakaz) ?? ''}}:</h5>            
 
         <table class="table table-hover">
             <thead class="thead-light">
@@ -89,6 +90,11 @@
                 @endforeach
             </tbody>
         </table> 
+        @else
+        <h5 class="text-info">Ваших товаров в этой заявочной компании не найдено.</h5>
+        <br />
+        @endif
+        <a href="{{ route('orders.index') }}" class="btn btn-primary" role="button">Добавить товар</a>
         <a href="{{ route('myorders.index') }}" class="btn btn-info" role="button">Вернуться назад</a>
     </div>
 </div>

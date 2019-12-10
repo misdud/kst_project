@@ -59,7 +59,10 @@ Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
         
         //for works orders
         Route::resource('orders', 'AppKancler\OrderController')->only(['index', 'store', 'show']);
-        Route::resource('myorders', 'AppKancler\MyOrderResourseController');
+        Route::resource('myorders', 'AppKancler\MyOrderResourseController')->except(['create', 'store']);
+        //for show otdel order
+        Route::get('otdellist', 'AppKancler\OrderOtdelController@showList')->name('otdel_order_list');
+        Route::get('otdelorders/{id_zakaz}', 'AppKancler\OrderOtdelController@showAllInZakaz')->name('otdel_orders_zakaz');
         
 
 });

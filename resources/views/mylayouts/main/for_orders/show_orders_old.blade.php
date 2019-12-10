@@ -35,7 +35,7 @@
                     @else
                     <td class="table-success">Проверена</td>
                     @endif
-                    <td>{{ $order->created_at }}</td>
+                    <td>{{ date('d.m.Y H:i',strtotime($order->created_at))}}</td>
                     
                 </tr>
                
@@ -46,6 +46,7 @@
         </table> 
      
       <a href="{{ route('myorders.index') }}" class="btn btn-info" role="button">Вернуться назад</a>
+
 
 
     </div>
