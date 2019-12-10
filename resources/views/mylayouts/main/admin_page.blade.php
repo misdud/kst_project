@@ -112,6 +112,8 @@
   @case(20)
         @include( 'mylayouts.main.for_orders.otdel_order_show', ['header' => 'Все товары отдела в заявочной копании'])
         @break
+  @case(21)
+        @include( 'mylayouts.main.for_orders.get_pdf_zakaz_otdel')
 
     @default
        @include('mylayouts.main.admincontent.default_admin_page', ['header' => 'Панель администратора'])

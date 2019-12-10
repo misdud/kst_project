@@ -63,6 +63,7 @@ Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
         //for show otdel order
         Route::get('otdellist', 'AppKancler\OrderOtdelController@showList')->name('otdel_order_list');
         Route::get('otdelorders/{id_zakaz}', 'AppKancler\OrderOtdelController@showAllInZakaz')->name('otdel_orders_zakaz');
+        Route::get('/downloadPDF/{id_zak}', 'AppKancler\OrderOtdelController@downloadTotalZakazPDF')->name('get_pdf_zakaz_otdel');
         
 
 });

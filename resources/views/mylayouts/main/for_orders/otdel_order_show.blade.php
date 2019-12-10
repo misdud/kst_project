@@ -33,25 +33,74 @@
                     <td>{{ $order->discriptorder }}</td>
                     <td>{{ $order->count }}</td>
                     <td>{{ $order->count_good }}</td>
-                     <td>{{ date('d.m.Y H:i', strtotime($order->created_at)) }}</td>
-                    @if($order->vakid == 'yes')
+                    <td>{{ date('d.m.Y H:i', strtotime($order->created_at)) }}</td>
+                    @if($order->valid == 'yes')
                     <td class="table-success">Проверен</td>
-                   
+
                     @else
                     <td class="table-warning">Не проверен</td>
-                    
+
                     @endif
-                   
+
                 </tr>
 
-            @endforeach
+                @endforeach
 
             </tbody>
         </table> 
+        <br />
+        <br />
+        <br />
+        <hr />
+         Итоги:
+        <table class="table table-sm table-info">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Наименование</th>
+                    <th scope="col">Кол. заказов</th>
+                    <th scope="col">Всего заказано</th>
+                    <th scope="col">Всего одобрено</th>
+                    <th scope="col">Разница</th>
+                    <th scope="col">План выдачи</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                @foreach($result as $prod=>$col_prod)
+                @php
+                    $user_count = 0;
+                    $valid_count = 0;
+                @endphp
+                <tr>
+                   <td>{{ $loop->iteration }}</td>
+                    <td>{{$prod }}</td>
+                    <td>{{ $col_prod->count() }}</td>
+                    @foreach($col_prod as $prod)
+                    @php
+                        $user_count +=$prod->count;
+                        $valid_count +=$prod->count_good;
+                    @endphp
 
-           <a href="{{ route('otdel_order_list') }}" class="btn btn-info" role="button">Вернуться назад</a>
-                 
-           {{ $orders->groupBy('product_id')}}
+                    @endforeach
+                    <td>{{ $user_count }}</td>
+                    <td>{{ $valid_count }}</td>
+                    <td>{{ $user_count-$valid_count }}</td>
+                    @if($user_count == $valid_count)
+                    <td class="table-success">{{ $valid_count }}</td>
+                    @else
+                    <td class="table-warning">{{ $valid_count }}</td>
+                    @endif
+
+                </tr>
+                @endforeach
+  
+
+            </tbody>
+        </table>
+          <a href="{{ route('otdel_order_list') }}" class="btn btn-info" role="button">Вернуться назад</a>
+          <a href="{{ route('get_pdf_zakaz_otdel',['id_zak'=>$zakaz_id]) }}" class="btn btn-success" role="button">Скачать PDF</a>
+         
 
     </div>
 </div>
