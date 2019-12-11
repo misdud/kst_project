@@ -1,19 +1,20 @@
 <div class="card">
     <div class="card-header">{{$header}}</div>
     <div class="card-body">
-        <br />
         <div class="row mx-md-n2">
-            <h4 class="text-primary px-2">Заявочные компании  </h4>   
+         <div class="d-inline p-2 mt-3 ml-2 mb-3 rounded-left bg-secondary text-white"><h5><span class="align-middle">Всех заявочных компаний:</span></h5></div>
+         <div class="d-inline p-2 mt-3 ml-1 mb-3  rounded-right bg-info text-white"><h5> <span class="align-middle">{{ $list_zakazs_count ?? '' }}</span></h5></div>
         </div>
         <br />
-        <h5 class="text-info">В таблице представлены заявочные компании, всего найдено  {{ count($list_zakazs) ?? ''}}:</h5>            
+        <h5 class="text-info">В таблице  представлены все заявочные компании:</h5>            
         <table class="table table-hover">
             <thead class="thead-light">
                 <tr>
-                    <th>№</th>
-                    <th>Название</th>
-                    <th>Дата действия</th>
+                    <th>#</th>
+                    <th>Название компании</th>
                     <th>Дата создания</th>
+                    <th>Действует до</th>
+                    <th>Период</th>
                     <th>Статус</th>
                     <th>Действие</th>
                 </tr>
@@ -24,8 +25,10 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $zakaz->zakazname }}</td>
-                    <td>{{ date('d.m.Y',strtotime($zakaz->dodate)) }}</td>
-                    <td>{{ date('d.m.Y H:i',strtotime($zakaz->created_at))}}</td>
+                    <td>{{ date('d.m.y H:i',strtotime($zakaz->created_at))}}</td>
+                    <td class="px-4">{{ date('d.m.y',strtotime($zakaz->dodate)) }}</td>
+                    <td class="px-4">{{ date('j',(strtotime($zakaz->dodate) - strtotime($zakaz->created_at))) }}</td>
+
                     @if($zakaz->zakazactiv == 1)
                         <td class="table-success">Активна</td>
                     @else

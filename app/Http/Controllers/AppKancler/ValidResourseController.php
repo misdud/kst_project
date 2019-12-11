@@ -10,6 +10,7 @@ use App\Orders;
 use App\Otdel;
 use App\Product;
 use App\User;
+use App\Order;
 
 class ValidResourseController extends Controller
 {
@@ -27,9 +28,10 @@ class ValidResourseController extends Controller
 
         //get ist all zakaz;
         $list_zakazs = Zakaz::with('orders')->orderBy('created_at','desc')->paginate(10);
+        $list_zakazs_count = Zakaz::with('orders')->count();
         if(view()->exists('mylayouts.main.validate.all_list_zakaz')){
             $formySwith=22;
-            return view('mylayouts.main.admin_page', compact('formySwith', 'list_zakazs'));
+            return view('mylayouts.main.admin_page', compact('formySwith', 'list_zakazs', 'list_zakazs_count'));
         }else{
             abort('404');
         }
@@ -112,10 +114,24 @@ class ValidResourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id) {
+        
+        if($request->isMethod('PUT')){
+        $order_edit = Order::select('id','discriptorder', 'user_id')->where('id', $id)->first();
+        $user = $order_edit->user->name;
+        $data = $order_edit->discriptorder.' для  '. $user; 
+        
+        $order = Order::where('id', $id)->update([
+            'count_good'=>$request->input('valid_count'),
+            'valid'=>'yes',
+        ]);
+        
+        return redirect()->back()->with('msg_valid_order',$data);
+    }else{
+        return redirect()->back();
     }
+    
+        }
 
     /**
      * Remove the specified resource from storage.
@@ -125,6 +141,31 @@ class ValidResourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $order = Order::findOrFail($id);
+        $res = Order::destroy($id);
+        
+        if($res){
+            return redirect()->back()->with(['msg_del'=>"{$order->discriptorder} - удалёно "]);
+        }else{
+            return redirect()->back()->with(['msg_del'=>"Товар не был удалён"]);
+        }
     }
+    
+    public function validOtdel($zakaz_id=null, $otdel_id=null){
+        
+        if(!Auth::check()){
+            return redirect('/login');
+        }
+        
+        $zakaz = Zakaz::findOrFail($zakaz_id);
+        $otdel_orders=$zakaz->orders()->with('user','product')->where('otdel_id', $otdel_id)->orderBy('user_id')->get();
+        
+        if(view()->exists('mylayouts.main.validate.valid_orders')){
+            $formySwith=24;
+            return view('mylayouts.main.admin_page', compact('formySwith', 'zakaz', 'otdel_orders'));
+        }else{
+            abort(404);
+        }
+    }
+    
 }

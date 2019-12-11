@@ -126,6 +126,9 @@
   @case(23)
         @include( 'mylayouts.main.validate.all_list_otdels', ['header' => 'Работа с отделом'])
         @break
+ @case(24)
+        @include( 'mylayouts.main.validate.valid_orders', ['header' => 'Проверка отдела'])
+        @break
    
 
     @default

@@ -61,7 +61,7 @@ class OrderOtdelController extends Controller {
         $zakaz = Zakaz::findOrFail($id_zakaz);
         $zakaz_name = $zakaz->zakazname;
         $zakaz_id = $zakaz->id;
-        $orders = $zakaz->orders()->where('otdel_id', $otdel_user)->with('user')->orderBy('created_at','desc')->get();
+        $orders = $zakaz->orders()->where('otdel_id', $otdel_user)->with('user','product')->orderBy('discriptorder','asc','created_at','desc')->get();
 
 //        $zakaz_list = Order::select('id', 'discriptorder', 'count','count_good',  'user_id', 'valid', 'otdel_id', 'zakaz_id', 'created_at')
 //                        ->where('zakaz_id', $id_zak)
@@ -111,7 +111,7 @@ class OrderOtdelController extends Controller {
 
             $result = $orders->groupBy('discriptorder');
             $pdf = PDF::loadView('mylayouts.main.for_orders.get_pdf_zakaz_otdel', compact('otd_user', 'orders', 'zakaz_name', 'result', 'zakaz_date'));
-            return $pdf->download('заказ-'.$otd_user.'-'.$zakaz_name.'pdf');
+            return $pdf->download('заказ-'.$otd_user.'-'.$zakaz_name.'.pdf');
             //return $pdf->stream('заказ_отдела.pdf');
         }
     }

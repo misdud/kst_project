@@ -20,6 +20,7 @@
                     <th>Название</th>
                     <th>Число</th>
                     <th>Число одоб.</th>
+                    <th>Ед.изм.</th>
                     <th>Дата &#8593;</th>
                     <th>Статус</th>
                 </tr>
@@ -33,6 +34,7 @@
                     <td>{{ $order->discriptorder }}</td>
                     <td>{{ $order->count }}</td>
                     <td>{{ $order->count_good }}</td>
+                    <td>{{ $order->product->units }}</td>
                     <td>{{ date('d.m.Y H:i', strtotime($order->created_at)) }}</td>
                     @if($order->valid == 'yes')
                     <td class="table-success">Проверен</td>
@@ -85,8 +87,18 @@
                     @endforeach
                     <td>{{ $user_count }}</td>
                     <td>{{ $valid_count }}</td>
-                    <td>{{ $user_count-$valid_count }}</td>
-                    @if($user_count == $valid_count)
+                    
+                    @if($order->valid == 'yes')
+                    <td>{{ ($user_count-$valid_count)*(-1) }}</td>
+
+                    @else
+                    <td class="table-warning">Не проверен</td>
+
+                    @endif
+                    
+
+
+                    @if($user_count <= $valid_count)
                     <td class="table-success">{{ $valid_count }}</td>
                     @else
                     <td class="table-warning">{{ $valid_count }}</td>

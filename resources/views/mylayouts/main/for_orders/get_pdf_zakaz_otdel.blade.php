@@ -7,7 +7,7 @@
   <h4>Отдел: {{ $otd_user ?? ''}} </h4>
         <p>Список товаров по закупке: <b>&laquo;{{ $zakaz_name ?? ''}}&raquo; </b>
             <br />
-            Дата создания закупки {{ $zakaz_date }}  </p>          
+            Дата создания закупки {{ date('d.m.y',strtotime($zakaz_date)) }}  </p>          
          <table style="border:1px solid #CCC !important;">
             <thead style="border:1px solid #CCC !important;">
                 <tr style="border:1px solid #CCC !important;">
@@ -40,7 +40,7 @@
                     @endforeach
                     <td style="border:1px solid #CCC !important;">{{ $user_count }}</td>
                     <td style="border:1px solid #CCC !important;">{{ $valid_count }}</td>
-                    <td style="border:1px solid #CCC !important;">{{ $user_count-$valid_count }}</td>
+                    <td style="border:1px solid #CCC !important;">{{ ($user_count-$valid_count)*(-1) }}</td>
                     @if($user_count == $valid_count)
                     <td style="border:1px solid #CCC !important;">{{ $valid_count }}</td>
                     @else
