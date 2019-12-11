@@ -5,28 +5,31 @@
     <div class="row">
         <div class="col-md-3">
             <div class="nav-side-menu">
-                <nav class="navbar bg-light justify-content-center">
+                <nav class="navbar bg-light justify-content-center ">
                     <!-- Links -->
                     <div class="bg-light border-right" id="sidebar-wrapper">
-                        <div class="sidebar-heading" ><h4><b>Пользователи:</b></h4> </div>
-                        <div class="list-group list-group-flush">
+                        <div class="py-1 pt-3 sidebar-heading shadow " style="background-color: #CAD4DC"><h4><b>Пользователи:</b></h4> </div>
+                        <div class="list-group list-group-flush shadow">
                             <a href="{{ route('show_users') }}" class="list-group-item list-group-item-action bg-light">Список всех ({{ session('count_users')?? '&'}})</a>
                             <a href="{{ route('roles_main') }}" class="list-group-item list-group-item-action bg-light">Роли пользователей </a>
                         </div>
-                        <br />
-                        <div class="sidebar-heading" ><h4><b>Компании:</b></h4> </div>
-                        <div class="list-group list-group-flush">
+                        <div class="py-1 pt-2 sidebar-heading shadow" style="background-color: #CAD4DC" ><h4><b>Компании:</b></h4> </div>
+                        <div class="list-group list-group-flush shadow">
                             <a href="{{ route('zakaz_list') }}" class="list-group-item list-group-item-action bg-light">Управление заказами</a>
                         </div>
-                        <br />
-                        <div class="sidebar-heading" ><h4><b>Номенклатура:</b></h4> </div>
-                        <div class="list-group list-group-flush">
-                            <a href="{{ route('products.index') }}" class="list-group-item list-group-item-action bg-light">Управление справочником канцелярии</a>
+                        <div class="py-1 pt-2 sidebar-heading shadow" style="background-color: #CAD4DC" ><h4><b>Номенклатура:</b></h4> </div>
+                        <div class="list-group list-group-flush shadow">
+                            <a href="{{ route('products.index') }}" class="list-group-item list-group-item-action bg-light">Управление справочником</a>
                         </div>
-                        <br />
-                        <div class="sidebar-heading" ><h4><b>Заказы канцелярии:</b></h4> </div>
-                        <div class="list-group list-group-flush">
+                        <div class="py-1 pt-2 sidebar-heading shadow " style="background-color: #CAD4DC"  ><h4><b>Заказы канцелярии:</b></h4> </div>
+                        <div class="list-group list-group-flush  shadow">
                             <a href="{{ route('orders.index') }}" class="list-group-item list-group-item-action bg-light">Создание заказа</a>
+                            <a href="{{ route('myorders.index') }}" class="list-group-item list-group-item-action bg-light">Мои заказы</a>
+                            <a href="{{ route('otdel_order_list') }}" class="list-group-item list-group-item-action bg-light">Заказы моего отдела</a>
+                        </div>
+                         <div class="py-1 pt-2 sidebar-heading shadow" style="background-color: #CAD4DC"><h4><b>Валидация заказов:</b></h4> </div>
+                        <div class="list-group list-group-flush shadow">
+                            <a href="{{ route('valids.index') }}" class="list-group-item list-group-item-action bg-light">Список компаний</a>
                             <a href="{{ route('myorders.index') }}" class="list-group-item list-group-item-action bg-light">Мои заказы</a>
                             <a href="{{ route('otdel_order_list') }}" class="list-group-item list-group-item-action bg-light">Заказы моего отдела</a>
                         </div>
@@ -114,6 +117,16 @@
         @break
   @case(21)
         @include( 'mylayouts.main.for_orders.get_pdf_zakaz_otdel')
+        @break
+        
+        {{--##### FOR VALID #####--}}
+  @case(22)
+        @include( 'mylayouts.main.validate.all_list_zakaz', ['header' => 'Работа с  заявочными копаниями'])
+        @break
+  @case(23)
+        @include( 'mylayouts.main.validate.all_list_otdels', ['header' => 'Работа с отделом'])
+        @break
+   
 
     @default
        @include('mylayouts.main.admincontent.default_admin_page', ['header' => 'Панель администратора'])

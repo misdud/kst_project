@@ -111,7 +111,8 @@ class OrderOtdelController extends Controller {
 
             $result = $orders->groupBy('discriptorder');
             $pdf = PDF::loadView('mylayouts.main.for_orders.get_pdf_zakaz_otdel', compact('otd_user', 'orders', 'zakaz_name', 'result', 'zakaz_date'));
-            return $pdf->stream('zzz.pdf');
+            return $pdf->download('заказ-'.$otd_user.'-'.$zakaz_name.'pdf');
+            //return $pdf->stream('заказ_отдела.pdf');
         }
     }
 

@@ -3,21 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/for_orders/no_orders.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/app/Order.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/app/User.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/routes/web.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/app/Http/Controllers/AppKancler/MyOrderResourseController.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/for_orders/all_list_order_product.blade.php</file>
             <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/for_orders/my_orders_list.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/app/Http/Controllers/AppKancler/ProductController.php</file>
+            <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/for_orders/no_orders.blade.php</file>
             <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/for_orders/order_product_show.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/for_orders/my_orders_in_zakaz.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/forzakazkanc/form_create.blade.php</file>
+            <file>file:/C:/xampp/htdocs/laravel6.kst/routes/web.php</file>
             <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/admin_page.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/forzakazkanc/all_list_zakaz.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/app/Http/Controllers/AppKancler/OrderController.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/app/Http/Controllers/AppKancler/ZakazMainController.php</file>
+            <file>file:/C:/xampp/htdocs/laravel6.kst/app/Http/Controllers/AppKancler/ValidResourseController.php</file>
+            <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/for_orders/all_list_order_product.blade.php</file>
+            <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/validate/all_list_otdels.blade.php</file>
         </group>
     </open-files>
 </project-private>

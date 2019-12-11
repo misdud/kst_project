@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card shadow-sm">
     <div class="card-header">{{$header}}</div>
     <div class="card-body">
 
@@ -18,7 +18,7 @@
         
         @if(session('order'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Товар << <span class="text-primary">{{ session('order') }}</span> >> добавлен в заказ!</strong> <a href="{{ route('myorders.index')}}" class="alert-link">Посмотреть свои заказы</a>.
+            <strong>Товар << <span class="text-danger">{{ session('order') }}</span> >> добавлен в заказ! </strong> <a href="{{ route('myorders.index')}}" class="alert-link"> <span class="text-primary">Посмотреть свои заказы</span></a>.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
