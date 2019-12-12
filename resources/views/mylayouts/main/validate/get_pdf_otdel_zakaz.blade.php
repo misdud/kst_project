@@ -4,7 +4,7 @@
   </style>
    <p style="float:right; font-size: 12px; color: #ccc !important">dudko@kst.kali</p>
   <h4>УП "Калийспецтранс" {{date('d.m.Y H:i',time())}}</h4>
-  <h4>Отдел: {{ $otd_user ?? ''}} </h4>
+  <h4>Отдел: {{ $otdel ?? ''}} </h4>
         <p>Список товаров по закупке: <b>&laquo;{{ $zakaz_name ?? ''}}&raquo; </b>
             <br />
             Дата создания закупки {{ date('d.m.y',strtotime($zakaz_date)) }}  </p>          

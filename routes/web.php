@@ -66,10 +66,11 @@ Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
         Route::get('/downloadPDF/{id_zak}', 'AppKancler\OrderOtdelController@downloadTotalZakazPDF')->name('get_pdf_zakaz_otdel');
         
         //for valid
+        Route::get('/downdPDF/{id_zak}/otdel/{id_otdel}', 'AppKancler\ValidResourseController@downloadZakazPDF')->name('otdel_pdf_zakaz');
         Route::get('validotdel/{zakaz_id}/edit/{otdel_id}', 'AppKancler\ValidResourseController@validOtdel')->name('valid_otdel')
                 ->where(['zakaz_id'=>'[0-9]+', 'otdel_id'=>'[0-9]+']);
         Route::resource('valids', 'AppKancler\ValidResourseController');
-        
+         
 
 });
 

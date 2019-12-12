@@ -9,6 +9,9 @@
          <div class="d-inline p-2 mt-3 ml-1 mb-3  rounded-right bg-info text-white"><h5><span class="align-middle">
              @foreach($otdel_orders as $ot)
                     {{ $ot->otdel->otdelfullname}}
+                    @php
+                        $id_otdel=$ot->otdel->id;
+                    @endphp
                 @break
              @endforeach
              </span></h5></div>
@@ -131,12 +134,13 @@
         <br/>
         <br/>
         
-        Итоги
+        Итоги:$
         <table class="table table-sm table-info">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Наименование</th>
+                    <th scope="col">Ед.изм.</th>
                     <th scope="col">Кол. заказов</th>
                     <th scope="col">Всего заказано</th>
                     <th scope="col">Всего одобрено</th>
@@ -150,18 +154,22 @@
                 @php
                     $user_count = 0;
                     $valid_count = 0;
+                    $unit='';
                 @endphp
                 <tr>
                    <td>{{ $loop->iteration }}</td>
                     <td>{{$prod }}</td>
-                    <td>{{ $col_prod->count() }}</td>
+                    
                     @foreach($col_prod as $prod)
                     @php
                         $user_count +=$prod->count;
                         $valid_count +=$prod->count_good;
+                        $unit = $prod->product->units;
                     @endphp
 
                     @endforeach
+                     <td>{{ $unit }}</td>
+                    <td>{{ $col_prod->count() }}</td>
                     <td>{{ $user_count }}</td>
                     <td>{{ $valid_count }}</td>
                     
@@ -176,34 +184,20 @@
                     <td class="table-warning">Нет данных</td>
 
                     @endif
-                    
-
 
                     @if($user_count <= $valid_count)
                     <td class="table-success">{{ $valid_count }}</td>
                     @else
                     <td class="table-warning">{{ $valid_count }}</td>
                     @endif
-
                 </tr>
                 @endforeach
   
 
             </tbody>
         </table>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+  
         <a href="{{ route('valids.show',['valid'=>$zakaz->id]) }}" class="btn btn-primary" role="button">Вернуться назад</a>
+        <a href="{{ route('otdel_pdf_zakaz',['id_zak'=>$zakaz->id,'id_otdel'=>$id_otdel]) }}" class="btn btn-success" role="button">Скачать PDF</a>
     </div>
 </div>

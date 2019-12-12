@@ -25,11 +25,10 @@
             <thead class="thead-light">
                 <tr>
                     <th>#</th>
-                    <th></th>
                     <th>Кол-во заказ. поз.</th>
+                    <th>Результат</th>
                     <th>Отдел</th>
                     <th>Действие</th>
-                    <th>Результат</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,11 +36,10 @@
                 @foreach ($group_otdel_orders as $otdel)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td></td>
+
                     <td class="px-4" style="background-color: #FFFADC" >{{ $otdel->count() }}</td>
                        @foreach($otdel as $otd)
-                                <td>{{ $otd->otdel->otdelfullname }}</td>
-                                <td><a href="{{ route('valid_otdel',['zakaz_id'=>$zakaz->id,  'otdel_id'=>$otd->otdel->id]) }}" class="btn btn-outline-secondary" role="button">Редактировать</a></td>
+                                
                             @php
                                 $n=0;
                             @endphp
@@ -57,10 +55,12 @@
                         @endforeach
                         
                         @if($otdel->count('product_id') == ($otdel->count('valid')-$n))
-                        <td class="px-4" style="background-color: #93EEBA" > Проверено: {{ ($otdel->count('valid'))- $n }}</td>
+                        <td  style="background-color: #93EEBA" > Проверено: {{ ($otdel->count('valid'))- $n }}</td>
                         @else
-                         <td class="px-4" style="background-color: #FFFADC" >Не проверено: {{ $n  }}</td>
+                         <td  style="background-color: #FFFADC" >Не проверено: {{ $n  }}</td>
                         @endif
+                        <td>{{ $otd->otdel->otdelfullname }}</td>
+                         <td><a href="{{ route('valid_otdel',['zakaz_id'=>$zakaz->id,  'otdel_id'=>$otd->otdel->id]) }}" class="btn btn-outline-secondary" role="button">Редактировать</a></td>
                 </tr>
                 @endforeach
             </tbody>
@@ -68,6 +68,7 @@
         @else
         <p>Нет участников</p>
         @endif
+        <br />
         <a href="{{ route('valids.index') }}" class="btn btn-info" role="button">Вернуться к списку</a>
 
     </div>

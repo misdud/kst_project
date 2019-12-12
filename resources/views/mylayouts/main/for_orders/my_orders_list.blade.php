@@ -15,7 +15,7 @@
             <thead class="thead-light">
                 <tr>
                     <th>№</th>
-                    <th>Имя</th>
+                    <th>Наименование</th>
                     <th>Дата действия</th>
                     <th>Дата создания</th>
                     <th>Статус</th>

@@ -11,6 +11,7 @@ use App\Otdel;
 use App\Product;
 use App\User;
 use App\Order;
+use PDF;
 
 class ValidResourseController extends Controller {
 
@@ -136,21 +137,45 @@ class ValidResourseController extends Controller {
 
         $zakaz = Zakaz::findOrFail($zakaz_id);
         $otdel_orders = $zakaz->orders()->with('user', 'product')->where('otdel_id', $otdel_id)->orderBy('user_id')->get();
-        
+
         //-------------
         $zak_id = $zakaz->id;
         $orders = $zakaz->orders()->where('otdel_id', $otdel_id)->with('product')->orderBy('discriptorder')->get();
         $res = $orders->groupBy('discriptorder');
-        foreach ($res as $k=>)
-        dump($res);
-        exit();
-        
-        
-        
-
+//        foreach ($res as $k=>$v){
+//            //echo $v->product->productdiscript;
+//            //echo $v->product->utits;
+//            foreach ($v as $c){
+//               //echo $c->product->productdiscript;
+//               echo $c->product->units;
+//            }
+//            echo '<br>';
+//        }
+//        dump($res);
+//        exit();
         if (view()->exists('mylayouts.main.validate.valid_orders')) {
             $formySwith = 24;
             return view('mylayouts.main.admin_page', compact('formySwith', 'zakaz', 'otdel_orders', 'res'));
+        } else {
+            abort(404);
+        }
+    }
+
+    public function downloadZakazPDF($id_zak = 0, $id_otdel = 0) {
+
+        $otd = Otdel::findOrFail($id_otdel);
+        $otdel=$otd->otdelfullname;
+
+        $zakaz = Zakaz::findOrFail($id_zak);
+        $zakaz_name = $zakaz->zakazname;
+        $zakaz_date = $zakaz->created_at;
+        $orders = $zakaz->orders()->where('otdel_id', $id_otdel)->with('user')->orderBy('discriptorder')->get();
+
+        $result = $orders->groupBy('discriptorder');
+        if (view()->exists('mylayouts.main.validate.get_pdf_otdel_zakaz')) {
+            $pdf = PDF::loadView('mylayouts.main.validate.get_pdf_otdel_zakaz', compact('otdel', 'orders', 'zakaz_name', 'result', 'zakaz_date'));
+            //return $pdf->download('заказ-' . $otd_user . '-' . $zakaz_name . '.pdf');
+            return $pdf->stream('Заказ_'.strtolower($otdel).'_'.strtolower($zakaz_name).'.pdf');
         } else {
             abort(404);
         }
