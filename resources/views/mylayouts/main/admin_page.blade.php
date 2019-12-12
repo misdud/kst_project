@@ -29,9 +29,8 @@
                         </div>
                          <div class="py-1 pt-2 sidebar-heading shadow" style="background-color: #CAD4DC"><h4><b>Валидация заказов:</b></h4> </div>
                         <div class="list-group list-group-flush shadow">
-                            <a href="{{ route('valids.index') }}" class="list-group-item list-group-item-action bg-light">Список компаний</a>
-                            <a href="{{ route('myorders.index') }}" class="list-group-item list-group-item-action bg-light">Мои заказы</a>
-                            <a href="{{ route('otdel_order_list') }}" class="list-group-item list-group-item-action bg-light">Заказы моего отдела</a>
+                            <a href="{{ route('valids.index') }}" class="list-group-item list-group-item-action bg-light">Проверка компаний</a>
+                            <a href="{{ route('myorders.index') }}" class="list-group-item list-group-item-action bg-light">Отчеты</a>
                         </div>
                     </div>
 

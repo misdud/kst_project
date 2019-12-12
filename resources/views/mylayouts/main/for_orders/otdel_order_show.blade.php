@@ -88,11 +88,15 @@
                     <td>{{ $user_count }}</td>
                     <td>{{ $valid_count }}</td>
                     
-                    @if($order->valid == 'yes')
-                    <td>{{ ($user_count-$valid_count)*(-1) }}</td>
+                    @if($valid_count != 0)
+                      @if((($user_count-$valid_count)*(-1)) !=0)
+                      <td>{{ ($user_count-$valid_count)*(-1) }} </td>
 
+                      @else
+                      <td></td>
+                      @endif
                     @else
-                    <td class="table-warning">Не проверен</td>
+                    <td class="table-warning">Нет данных</td>
 
                     @endif
                     

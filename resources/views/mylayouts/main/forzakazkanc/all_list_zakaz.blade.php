@@ -33,8 +33,8 @@
           <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $zakaz->zakazname }}</td>
-            <td>{{ $zakaz->dodate }}</td>
-            <td>{{ $zakaz->created_at}}</td>
+            <td>{{ date('d.m.y',strtotime($zakaz->dodate)) }}</td>
+            <td>{{ date('d.m.y H:i',strtotime($zakaz->created_at)) }}</td>
              @if($zakaz->zakazactiv == 1)
                 <td class="table-success">Активна</td>
                 <td><a href="{{ route('zakaz_edit',['id'=>$zakaz->id])}}" class="btn btn-outline-secondary" role="button">Изменить</a></td>

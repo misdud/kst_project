@@ -52,8 +52,8 @@
                     <th>ФИО</th>
                     <th>Товар</th>
                     <th>Ед.изм.</th>
-                    <th>Кол-во</th>
-                    <th>Действие</th>
+                    <th>Кол.</th>
+                    <th>Соглосовать</th>
                     <th>Изменить</th>
                     <th>Статус</th>
           
@@ -99,7 +99,7 @@
                         </div>
                     </td>
                      @else
-                    <td>Не согл-но</td>
+                    <td class="table-warning">Не согл-но</td>
                     @endif
                       
                     @if($order->valid == 'no')
@@ -126,9 +126,84 @@
         </table> 
         @else
         <h5 class="text-info">Ваших товаров в этой заявочной компании не найдено.</h5>
-        <br />
         @endif
+        <hr/>
+        <br/>
+        <br/>
+        
+        Итоги
+        <table class="table table-sm table-info">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Наименование</th>
+                    <th scope="col">Кол. заказов</th>
+                    <th scope="col">Всего заказано</th>
+                    <th scope="col">Всего одобрено</th>
+                    <th scope="col">Разница</th>
+                    <th scope="col">План выдачи</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                @foreach($res as $prod=>$col_prod)
+                @php
+                    $user_count = 0;
+                    $valid_count = 0;
+                @endphp
+                <tr>
+                   <td>{{ $loop->iteration }}</td>
+                    <td>{{$prod }}</td>
+                    <td>{{ $col_prod->count() }}</td>
+                    @foreach($col_prod as $prod)
+                    @php
+                        $user_count +=$prod->count;
+                        $valid_count +=$prod->count_good;
+                    @endphp
+
+                    @endforeach
+                    <td>{{ $user_count }}</td>
+                    <td>{{ $valid_count }}</td>
+                    
+                    @if($valid_count != 0)
+                      @if((($user_count-$valid_count)*(-1)) !=0)
+                      <td>{{ ($user_count-$valid_count)*(-1) }} </td>
+
+                      @else
+                      <td></td>
+                      @endif
+                    @else
+                    <td class="table-warning">Нет данных</td>
+
+                    @endif
+                    
+
+
+                    @if($user_count <= $valid_count)
+                    <td class="table-success">{{ $valid_count }}</td>
+                    @else
+                    <td class="table-warning">{{ $valid_count }}</td>
+                    @endif
+
+                </tr>
+                @endforeach
+  
+
+            </tbody>
+        </table>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <a href="{{ route('valids.show',['valid'=>$zakaz->id]) }}" class="btn btn-primary" role="button">Вернуться назад</a>
-        <a href="{{ route('myorders.index') }}" class="btn btn-info" role="button">Вернуться назад</a>
     </div>
 </div>
