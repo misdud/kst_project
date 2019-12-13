@@ -22,31 +22,12 @@
            <p class="pl-md-2">Статус <b>"Активна"</b>  означает - что пользватели еще не закончили формирование заказов и могут добовлять товары </p>
          @else
          <div class="d-inline p-2 mt-3 ml-1 mb-3  rounded-right bg-success text-white"><h5> <span class="align-middle">закрыта</span></h5></div>
-         <p class="pl-md-2">Статус <b>"Закрыта"</b>  означает - что пользватели  закончили формирование заказов и вам можно согласовывать</p>
+         <p class="pl-md-2">Статус <b>"Закрыта"</b>  означает - что пользватели  закончили формирование заказов и вам можно формировать отчёты</p>
          @endif      
         </div>  
-        
-        
-        
-        <br />
-        @if(session('msg_del'))
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <strong> <span class="text-danger">{{ session('msg_del') }}</span> </strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        @endif
-      @if(session('msg_valid_order'))
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <strong>Согласован товар: <span class="text-danger"> {{ session('msg_valid_order') }} </span></strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        @endif
+
         @if(count($otdel_orders)>0)
-       <span class="d-block p-2  rounded-top bg-info text-white">Всего найдено {{ count($otdel_orders) ?? ''}}:</span>      
+        <span class="d-block p-1  rounded-top bg-info text-white ">Всего найдено {{ count($otdel_orders) ?? ''}}:</span> 
         <table class="table table-hover shadow-sm">
             <thead class="thead-light">
                 <tr>
@@ -55,11 +36,9 @@
                     <th>Товар</th>
                     <th>Ед.изм.</th>
                     <th>Кол.</th>
-                    <th>Соглосовать</th>
-                    <th>Изменить</th>
+                    <th>Соглосовано</th>
                     <th>Статус</th>
           
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -72,54 +51,23 @@
                     <td class="px-4">{{ $order->count }}</td>
                     
                      @if($order->valid == 'no')
-                    <td>
-                        <div >
-                        <form action="{{ route('valids.update',['valid'=>$order['id']]) }}" method="POST">
-                            @method('PUT')
-                            @csrf
-
-                            <input style="width: 35px;" type="number" name='valid_count' max="{{ $order->count +1 }}" min="0" minlength="5" value="{{  $order->count}}" />
-                            <input type="submit" value="&#10004;" />
-       
-                        </form>
-                        </div>
-                    </td>
-                    @else
-                    <td>Согл-но: {{ $order->count_good}}</td>
-                    @endif
-                   @if($order->valid == 'yes')
-                    <td>
-                        <div >
-                        <form action="{{ route('valids.update',['valid'=>$order['id']]) }}" method="POST">
-                            @method('PUT')
-                            @csrf
-
-                            <input style="width: 35px;" type="number" name='valid_count' max="{{ $order->count_good +1 }}" min="0" minlength="5" value="{{  $order->count_good}}" />
-                            <input type="submit" value="&#10004;" />
-       
-                        </form>
-                        </div>
-                    </td>
+                     <td class="table-warning">Не согл-но</td>
                      @else
-                    <td class="table-warning">Не согл-но</td>
-                    @endif
+                       @if($order->count <= $order->count_good)
+                            <td class="px-5">{{ $order->count_good}}</td>
+                        @else     
+                            <td class="px-5 text-danger ">{{ $order->count_good}}</td>
+                       @endif
+                     @endif
+
                       
                     @if($order->valid == 'no')
                     
                     <td class="table-warning">Не проверен</td>
-                    <td>
-                        <form action="{{ route('valids.destroy',['valid'=>$order->id]) }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <button type="submit" class="btn  btn-danger">
-                                {{ __('Удалить') }}
-                            </button>
-                        </form>
-                    </td>
 
                     @else
                     <td class="table-success">Проверен</td>
-                    <td ></td>
+     
                   
                     @endif
                 </tr>
@@ -127,14 +75,14 @@
             </tbody>
         </table> 
         @else
-        <h5 class="text-info">Ваших товаров в этой заявочной компании не найдено.</h5>
+        <h5 class="text-info">Товаров в этой заявочной компании не найдено.</h5>
         @endif
         <hr/>
         <br/>
         <br/>
         
         Итоги:
-        <table class="table table-sm table-info">
+        <table class="table table-sm table-info shadow-sm">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -196,7 +144,7 @@
             </tbody>
         </table>
   
-        <a href="{{ route('valids.show',['valid'=>$zakaz->id]) }}" class="btn btn-primary" role="button">Вернуться назад</a>
+        <a href="{{ route('show_otdels_raport',['id_zakr'=>$zakaz->id]) }}" class="btn btn-primary" role="button">Вернуться назад</a>
         <a href="{{ route('otdel_pdf_zakaz',['id_zak'=>$zakaz->id,'id_otdel'=>$id_otdel]) }}" class="btn btn-success" role="button">Скачать PDF</a>
     </div>
 </div>

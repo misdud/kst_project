@@ -6,7 +6,8 @@
          <div class="d-inline p-2 mt-3 ml-1 mb-3  rounded-right bg-info text-white"><h5> <span class="align-middle">{{ $list_zakazs_count ?? '' }}</span></h5></div>
         </div>
         <br />
-         <span class="d-block p-1  rounded-top bg-info text-white">В таблице  представлены все заявочные компании:</span>
+        
+        <span class="d-block p-1  rounded-top bg-info text-white">Выберите заявочную компанию для просмотра отчета</span>  
         <table class="table table-hover shadow-sm">
             <thead class="thead-light">
                 <tr>
@@ -34,7 +35,7 @@
                     @else
                         <td class="table-warning">Закрыта</td>
                     @endif
-                    <td><a href="{{ route('valids.show',['valid'=>$zakaz->id])}}" class="btn btn-outline-secondary" role="button">Посмотреть</a></td>
+                    <td><a href="{{ route('show_otdels_raport',['id_zakr'=>$zakaz->id])}}" class="btn btn-outline-secondary" role="button">Перейти к отчётам</a></td>
                 </tr>
                 @endforeach
             </tbody>

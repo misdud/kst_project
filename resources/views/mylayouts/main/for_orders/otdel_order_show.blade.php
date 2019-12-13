@@ -11,8 +11,8 @@
         <br />
         <h4 class="text-primary">Все товары  отдела по закупке:  <span class="text-secondary"><b>&laquo;{{ $zakaz_name ?? ''}}&raquo; </b></span> </h4>   
         <br />
-        <h5 class="text-info">Bсего {{ count($orders) ?? ''}}:</h5>            
-        <table class="table table-hover">
+       <span class="d-block p-2  rounded-top bg-info text-white">Bсего {{ count($orders) ?? ''}}:</span>    
+        <table class="table table-hover shadow-sm">
             <thead class="thead-light">
                 <tr>
                     <th>№</th>

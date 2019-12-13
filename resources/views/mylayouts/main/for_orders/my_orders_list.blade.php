@@ -8,10 +8,9 @@
             <div class="d-inline p-2 mt-3 ml-2 mb-3 rounded-left bg-secondary text-white"><h5><span class="align-middle">Ваш отдел:</span></h5></div>
             <div class="d-inline p-2 mt-3 ml-1 mb-3  rounded-right bg-info text-white"><h5><span class="align-middle">{{ $otdel ?? ''}}</span></h5></div>
         </div>
-        <br />
-        <h5 class="text-info">В таблице представлены заявочные компании в которых вы участвовали, всего ({{ $all_count ?? '&'}}) :</h5>            
-
-        <table class="table table-hover">
+        <br />  
+         <span class="d-block p-2  rounded-top bg-info text-white">В таблице представлены заявочные компании в которых вы участвовали, всего {{ $all_count ?? ''}}:</span> 
+        <table class="table table-hover shadow-sm">
             <thead class="thead-light">
                 <tr>
                     <th>№</th>

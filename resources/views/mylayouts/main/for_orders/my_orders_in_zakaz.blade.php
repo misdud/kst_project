@@ -25,9 +25,9 @@
         </div>
         @endif
         @if(count($orders_zakaz)>0)
-        <h5 class="text-info">Всего найдено {{ count($orders_zakaz) ?? ''}}:</h5>            
+         <span class="d-block p-2  rounded-top bg-info text-white">Всего найдено {{ count($orders_zakaz) ?? ''}}:</span> 
 
-        <table class="table table-hover">
+        <table class="table table-hover shadow-sm">
             <thead class="thead-light">
                 <tr>
                     <th>№</th>

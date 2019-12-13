@@ -27,7 +27,7 @@ class ValidResourseController extends Controller {
         }
 
         //get ist all zakaz;
-        $list_zakazs = Zakaz::with('orders')->orderBy('created_at', 'desc')->paginate(10);
+        $list_zakazs = Zakaz::with('orders')->orderBy('created_at', 'desc')->paginate(5);
         $list_zakazs_count = Zakaz::with('orders')->count();
         if (view()->exists('mylayouts.main.validate.all_list_zakaz')) {
             $formySwith = 22;
@@ -174,8 +174,11 @@ class ValidResourseController extends Controller {
         $result = $orders->groupBy('discriptorder');
         if (view()->exists('mylayouts.main.validate.get_pdf_otdel_zakaz')) {
             $pdf = PDF::loadView('mylayouts.main.validate.get_pdf_otdel_zakaz', compact('otdel', 'orders', 'zakaz_name', 'result', 'zakaz_date'));
-            //return $pdf->download('заказ-' . $otd_user . '-' . $zakaz_name . '.pdf');
-            return $pdf->stream('Заказ_'.strtolower($otdel).'_'.strtolower($zakaz_name).'.pdf');
+            $name ='Заказ_'.mb_strtolower($otdel).'_'.mb_strtolower($zakaz_name).'.pdf';
+            $name_edit = str_replace(' ', '_', $name);
+            PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+            return $pdf->stream($name_edit);
+            //return $pdf->stream('Заказ_'.strtolower($otdel).'_'.strtolower($zakaz_name).'.pdf');
         } else {
             abort(404);
         }

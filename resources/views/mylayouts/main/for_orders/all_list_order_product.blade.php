@@ -26,11 +26,11 @@
         @endif
 
         @if(count($products)>0)
+        <br />
         <h2>Выберите товар из справочника "Канцелярия" </h2>
-
-        <p class="text-info">Всего товаров {{ $product_count?? '&'}}:</p>            
-
-        <table class="table table-hover">
+        <br />
+        <span class="d-block p-2  rounded-top bg-info text-white">Всего товаров {{ $product_count ?? ''}}:</span>       
+        <table class="table table-hover shadow-sm">
             <thead class="thead-light">
                 <tr>
                     <th>№</th>
@@ -52,7 +52,7 @@
                     @else
                     <td><a href="{{ route('orders.index')}}" class="btn btn-outline-secondary" role="button">Отказано</a></td>
                     @endif
-                </tr>
+                </tr>  
                 @empty
             <p>Товары не найдены</p>
             @endforelse

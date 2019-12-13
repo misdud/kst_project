@@ -11,8 +11,8 @@
         <br />
         <h4 class="text-primary">Все участия отдела <span class="text-secondary"><b>&laquo;{{ $otdel->otdelfullname ?? ''}}&raquo; </b></span> в заявочных компаниях. </h4>   
         <br />
-        <h5 class="text-info">В таблице представлены заявочные компании в которых  участвовал отдел, всего ({{ count($list_group) ?? '&'}}):</h5>            
-        <table class="table table-hover">
+         <span class="d-block p-2  rounded-top bg-info text-white">В таблице представлены заявочные компании в которых  участвовал отдел, всего {{ count($list_group) ?? ''}}:</span>           
+        <table class="table table-hover shadow-sm">
             <thead class="thead-light">
                 <tr>
                     <th>№</th>

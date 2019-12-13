@@ -30,7 +30,7 @@
                          <div class="py-1 pt-2 sidebar-heading shadow" style="background-color: #CAD4DC"><h4><b>Валидация заказов:</b></h4> </div>
                         <div class="list-group list-group-flush shadow">
                             <a href="{{ route('valids.index') }}" class="list-group-item list-group-item-action bg-light">Проверка компаний</a>
-                            <a href="{{ route('myorders.index') }}" class="list-group-item list-group-item-action bg-light">Отчеты</a>
+                            <a href="{{ route('show_index_raport') }}" class="list-group-item list-group-item-action bg-light">Отчеты</a>
                         </div>
                     </div>
 
@@ -128,7 +128,20 @@
  @case(24)
         @include( 'mylayouts.main.validate.valid_orders', ['header' => 'Проверка отдела'])
         @break
-   
+        
+        {{---### FOR RAPORT ###---}}
+ @case(25)
+        @include('mylayouts.main.raport_kancler.all_list_zakazs', ['header' => 'Работа с отчётами'])
+        @break
+ @case(26)
+        @include('mylayouts.main.raport_kancler.all_list_otdel_raport', ['header' => 'Работа с отчётами по отделам'])
+        @break
+ @case(27)
+        @include('mylayouts.main.raport_kancler.otdel_order_raport', ['header' => 'Детализация'])
+        @break
+ @case(28)
+        @include('mylayouts.main.raport_kancler.show_svod', ['header' => 'Сводная по выбранной заявочной компании'])
+        @break
 
     @default
        @include('mylayouts.main.admincontent.default_admin_page', ['header' => 'Панель администратора'])

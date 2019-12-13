@@ -8,9 +8,9 @@
             <div class="d-inline p-2 mt-3 ml-1 mb-3  rounded-right bg-info text-white"><h5><span class="align-middle">{{ $otdel ?? ''}}</span></h5></div>
         </div>  
         <br />
-        <h5 class="text-info"> Всего найдено {{ count($orders_user) ?? ''}} из них:</h5>            
-
-        <table class="table table-hover">
+        
+         <span class="d-block p-2  rounded-top bg-info text-white">Всего найдено {{ count($orders_user) ?? ''}}:</span>   
+        <table class="table table-hover shadow-sm">
             <thead class="thead-light">
                 <tr>
                     <th>№</th>

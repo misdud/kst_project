@@ -48,29 +48,38 @@ Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
         
         
         // For Works zakaz (open\close) - list
-        Route::get('listzakaz', 'AppKancler\ZakazMainController@showListZakaz')->name('zakaz_list');
-        Route::get('zakazcreat', 'AppKancler\ZakazMainController@showFormZakaz')->name('zakaz_creat');
-        Route::post('zakcreat', 'AppKancler\ZakazMainController@createZakaz')->name('zakaz_creat_regist');
-        Route::get('zakedit/{id}/edit', 'AppKancler\ZakazMainController@editZakaz')->name('zakaz_edit')->where('id','[0-9]+');
-        Route::put('zakedit/{id}', 'AppKancler\ZakazMainController@editZakazdb')->name('zakaz_edit_db');
+        Route::get('/listzakaz', 'AppKancler\ZakazMainController@showListZakaz')->name('zakaz_list');
+        Route::get('/zakazcreat', 'AppKancler\ZakazMainController@showFormZakaz')->name('zakaz_creat');
+        Route::post('/zakcreat', 'AppKancler\ZakazMainController@createZakaz')->name('zakaz_creat_regist');
+        Route::get('/zakedit/{id}/edit', 'AppKancler\ZakazMainController@editZakaz')->name('zakaz_edit')->where('id','[0-9]+');
+        Route::put('/zakedit/{id}', 'AppKancler\ZakazMainController@editZakazdb')->name('zakaz_edit_db');
         
         //works derectory product
-        Route::resource('products', 'AppKancler\ProductController')->except(['show', 'destroy']);
+        Route::resource('/products', 'AppKancler\ProductController')->except(['show', 'destroy']);
         
         //for works orders
-        Route::resource('orders', 'AppKancler\OrderController')->only(['index', 'store', 'show']);
-        Route::resource('myorders', 'AppKancler\MyOrderResourseController')->except(['create', 'store']);
+        Route::resource('/orders', 'AppKancler\OrderController')->only(['index', 'store', 'show']);
+        Route::resource('/myorders', 'AppKancler\MyOrderResourseController')->except(['create', 'store']);
         //for show otdel order
-        Route::get('otdellist', 'AppKancler\OrderOtdelController@showList')->name('otdel_order_list');
-        Route::get('otdelorders/{id_zakaz}', 'AppKancler\OrderOtdelController@showAllInZakaz')->name('otdel_orders_zakaz');
+        Route::get('/otdellist', 'AppKancler\OrderOtdelController@showList')->name('otdel_order_list');
+        Route::get('/otdelorders/{id_zakaz}', 'AppKancler\OrderOtdelController@showAllInZakaz')->name('otdel_orders_zakaz');
         Route::get('/downloadPDF/{id_zak}', 'AppKancler\OrderOtdelController@downloadTotalZakazPDF')->name('get_pdf_zakaz_otdel');
         
         //for valid
         Route::get('/downdPDF/{id_zak}/otdel/{id_otdel}', 'AppKancler\ValidResourseController@downloadZakazPDF')->name('otdel_pdf_zakaz');
-        Route::get('validotdel/{zakaz_id}/edit/{otdel_id}', 'AppKancler\ValidResourseController@validOtdel')->name('valid_otdel')
+        Route::get('/validotdel/{zakaz_id}/edit/{otdel_id}', 'AppKancler\ValidResourseController@validOtdel')->name('valid_otdel')
                 ->where(['zakaz_id'=>'[0-9]+', 'otdel_id'=>'[0-9]+']);
-        Route::resource('valids', 'AppKancler\ValidResourseController');
-         
+        Route::resource('/valids', 'AppKancler\ValidResourseController')->except(['create', 'store', 'edit']);
+        
+        //for raport kancler
+        Route::get('/raports', 'AppKancler\RaportKanclerController@index')->name('show_index_raport');
+        Route::get('/rapshow/{id_zakr}', 'AppKancler\RaportKanclerController@show')->name('show_otdels_raport')->where('id_zakr','[0-9]+');
+        Route::get('/rapotd/{id_zak}/show/{id_otdel}', 'AppKancler\RaportKanclerController@showRaportOtdel')->name('show_otd_rap')
+                ->where(['id_zak'=>'[0-9]+', 'id_otdel'=>'[0-9]+']);
+        //for svodni
+        Route::get('/showsvod/{id_zak}', 'AppKancler\RaportKanclerController@showSvod')->name('show_svod_zakaz');
+        Route::get('/downsvod/{id_zak}', 'AppKancler\RaportKanclerController@downloadSvodPDF')->name('svod_zakaz_pdf');
+                         
 
 });
 
