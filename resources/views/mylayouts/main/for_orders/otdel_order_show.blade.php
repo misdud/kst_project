@@ -115,7 +115,7 @@
             </tbody>
         </table>
           <a href="{{ route('otdel_order_list') }}" class="btn btn-info" role="button">Вернуться назад</a>
-          <a href="{{ route('get_pdf_zakaz_otdel',['id_zak'=>$zakaz_id]) }}" class="btn btn-success" role="button">Скачать PDF</a>
+          <a href="{{ route('get_pdf_zakaz_otdel',['id_zak'=>$zakaz_id]) }}" class="btn btn-outline-success" role="button">Скачать PDF</a>
          
 
     </div>

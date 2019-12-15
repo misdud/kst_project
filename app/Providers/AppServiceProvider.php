@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Order;
+use App\User;
+use Auth;
+use Log;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-    }
+           Order::deleted(function(Order $order){
+             $user = Auth::user(); 
+             Log::info('Заказ удалён для:',[$order->user->name=>$order->discriptorder,
+                 ' удалил: '=>$user->name]);
+         });
+    }  
 }

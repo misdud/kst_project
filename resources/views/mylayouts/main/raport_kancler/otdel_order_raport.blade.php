@@ -145,6 +145,6 @@
         </table>
   
         <a href="{{ route('show_otdels_raport',['id_zakr'=>$zakaz->id]) }}" class="btn btn-primary" role="button">Вернуться назад</a>
-        <a href="{{ route('otdel_pdf_zakaz',['id_zak'=>$zakaz->id,'id_otdel'=>$id_otdel]) }}" class="btn btn-success" role="button">Скачать PDF</a>
+        <a href="{{ route('otdel_pdf_zakaz',['id_zak'=>$zakaz->id,'id_otdel'=>$id_otdel]) }}" class="btn btn-outline-success" role="button">Скачать PDF</a>
     </div>
 </div>

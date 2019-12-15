@@ -12,6 +12,7 @@ use App\Product;
 use App\User;
 use App\Order;
 use PDF;
+use Gate;
 
 class ValidResourseController extends Controller {
 
@@ -21,9 +22,9 @@ class ValidResourseController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        //test
-        if (!Auth::check()) {
-            return redirect('/login');
+
+         if(Gate::denies('show_moder_kanc_admin')){
+            return redirect()->route('no_access');
         }
 
         //get ist all zakaz;
@@ -63,6 +64,9 @@ class ValidResourseController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
+         if(Gate::denies('show_moder_kanc_admin')){
+            return redirect()->route('no_access');
+        }
         $zakaz = Zakaz::findOrFail($id);
         $orders_zakaz = $zakaz->orders()->with('otdel')->get();
         $group_otdel_orders = $orders_zakaz->groupBy('otdel_id');
@@ -95,6 +99,9 @@ class ValidResourseController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
+        if(Gate::denies('show_moder_kanc_admin')){
+            return redirect()->route('no_access');
+        }
 
         if ($request->isMethod('PUT')) {
             $order_edit = Order::select('id', 'discriptorder', 'user_id')->where('id', $id)->first();
@@ -119,6 +126,9 @@ class ValidResourseController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
+        if(Gate::denies('show_moder_kanc_admin')){
+            return redirect()->route('no_access');
+        }
         $order = Order::findOrFail($id);
         $res = Order::destroy($id);
 
@@ -130,6 +140,9 @@ class ValidResourseController extends Controller {
     }
 
     public function validOtdel($zakaz_id = null, $otdel_id = null) {
+        if(Gate::denies('show_moder_kanc_admin')){
+            return redirect()->route('no_access');
+        }
 
         if (!Auth::check()) {
             return redirect('/login');
@@ -162,6 +175,9 @@ class ValidResourseController extends Controller {
     }
 
     public function downloadZakazPDF($id_zak = 0, $id_otdel = 0) {
+        if(Gate::denies('show_moder_kanc_admin')){
+            return redirect()->route('no_access');
+        }
 
         $otd = Otdel::findOrFail($id_otdel);
         $otdel=$otd->otdelfullname;

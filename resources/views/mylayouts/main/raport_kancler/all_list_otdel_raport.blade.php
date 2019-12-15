@@ -26,7 +26,7 @@
          
        
         <br />
-        <span class="d-block p-1  rounded-top bg-info text-white">В таблице представлены отделы которые участвовали в этой компании:</span>       
+        <span class="d-block p-1  rounded-top bg-info text-white">В таблице представлены отделы которые участвовали в этой компании:</span>
         <table class="table table-hover shadow-sm">
             <thead class="thead-light">
                 <tr>
@@ -68,7 +68,7 @@
                         @endif
                         <td>{{ $otd->otdel->otdelfullname }}</td>
                          <td><a href="{{ route('show_otd_rap',['id_zak'=>$zakaz->id,  'id_otdel'=>$otd->otdel->id]) }}" class="btn btn-outline-secondary" role="button">Посмотреть</a></td>
-                         <td><a href="{{ route('otdel_pdf_zakaz',['id_zak'=>$zakaz->id,'id_otdel'=>$otd->otdel->id]) }}" class="btn btn-success" role="button">Скачать PDF</a></td>
+                         <td><a href="{{ route('otdel_pdf_zakaz',['id_zak'=>$zakaz->id,'id_otdel'=>$otd->otdel->id]) }}" class="btn btn-outline-success" role="button">Скачать PDF</a></td>
                 </tr>
                 @endforeach
             </tbody>
@@ -78,8 +78,8 @@
         @endif
         <br />
         <a href="{{ route('show_index_raport') }}" class="btn btn-info" role="button">Вернуться к списку</a>
-        <a href="{{ route('show_svod_zakaz',['id_zak'=>$zakaz->id]) }}" class="btn btn-info" role="button">Смотреть сводный</a>
-        <a href="{{ route('svod_zakaz_pdf',['id_zak'=>$zakaz->id]) }}" class="btn btn-success" role="button">Скачать своднй PDF</a>
+        <a href="{{ route('show_svod_zakaz',['id_zak'=>$zakaz->id]) }}" class="btn btn-outline-secondary" role="button">Смотреть сводный</a>
+        <a href="{{ route('svod_zakaz_pdf',['id_zak'=>$zakaz->id]) }}" class="btn btn-outline-success" role="button">Скачать своднй PDF</a>
 
     </div>
 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AppKancler;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
+use Gate;
 
 class ProductController extends Controller {
 
@@ -14,6 +15,9 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
+        if(Gate::denies('show_mang_kanc_admin')){
+            return redirect()->route('no_access');
+        }
         $products = Product::select('id', 'productname', 'units', 'productactiv')->orderBy('productname')->paginate(10);
         $product_count = Product::count();
 //        dump($products);
@@ -33,6 +37,9 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
+        if(Gate::denies('show_mang_kanc_admin')){
+            return redirect()->route('no_access');
+        }
         //for show form create
         $formySwith = 11;
         return view('mylayouts.main.admin_page', ['formySwith' => $formySwith]);
@@ -45,6 +52,9 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+         if(Gate::denies('show_mang_kanc_admin')){
+            return redirect()->route('no_access');
+        }
 
         if ($request->isMethod('POST')) {
 
@@ -85,6 +95,9 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
+         if(Gate::denies('show_mang_kanc_admin')){
+            return redirect()->route('no_access');
+        }
         
         $product= Product::findOrFail($id);
         //12 for show form edit product
@@ -101,6 +114,9 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
+        if(Gate::denies('show_mang_kanc_admin')){
+            return redirect()->route('no_access');
+        }
         
         $this->validate($request, ['productdiscr' => 'max:100']);
         $product=Product::findOrFail($id);

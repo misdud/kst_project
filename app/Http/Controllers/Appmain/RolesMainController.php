@@ -6,10 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Role;
 use App\User;
+use Gate;
 
 class RolesMainController extends Controller
 {
     public function show(){
+        //isAdmin
+        if(Gate::denies('show_users_admin')){
+            return redirect()->route('no_access');
+        }
         
         $roles = Role::select('id', 'rolename', 'inforole')->get();
          $formySwith = 4;
@@ -18,6 +23,11 @@ class RolesMainController extends Controller
     }
     
     public function rolecreat(Request $request){
+        //isAdmin
+        if(Gate::denies('show_users_admin')){
+            return redirect()->route('no_access');
+        }
+        
         
         if($request->isMethod('GET')){
             $formySwith = 5;
@@ -45,6 +55,11 @@ class RolesMainController extends Controller
     }
     
         public function roleAddUser(Request $request, $id=0){
+        //isAdmin
+        if(Gate::denies('show_users_admin')){
+            return redirect()->route('no_access');
+        }
+        
 
         if($request->isMethod('POST') && $request->input('role_id')!=NULL && $id !=0 ){
              
@@ -63,6 +78,11 @@ class RolesMainController extends Controller
 
     
     public function showUsersRole($id=0){
+        //isAdmin
+        if(Gate::denies('show_users_admin')){
+            return redirect()->route('no_access');
+        }
+        
            
             $roles = Role::findOrFail($id);
             $users_role = $roles->users()->orderBy('name')->paginate(10);
@@ -75,6 +95,11 @@ class RolesMainController extends Controller
     }
     
     public function roleDeleteUser(Request $request, $id=0){
+        //isAdmin
+        if(Gate::denies('show_users_admin')){
+            return redirect()->route('no_access');
+        }
+        
         
         if($id == $request->input('user_dell_id')){
             $user = User::findOrFail($request->input('user_dell_id'));

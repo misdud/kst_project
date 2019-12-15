@@ -5,12 +5,16 @@ namespace App\Http\Controllers\AppKancler;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Zakaz;
+use Gate;
 
 class ZakazMainController extends Controller {
 
     public function showListZakaz() {
         //проверка на права
         //закрытие / открытие если открытых нет
+      if(Gate::denies('show_mang_kanc_admin')){
+            return redirect()->route('no_access');
+        }
 
         $zakazs = Zakaz::select('id', 'zakazname', 'zakazactiv', 'dodate', 'created_at')->orderBy('created_at', 'desc')->paginate(10);
         $zakazs_count = Zakaz::count();
@@ -30,6 +34,9 @@ class ZakazMainController extends Controller {
     }
 
     public function showFormZakaz() {
+       if(Gate::denies('show_mang_kanc_admin')){
+            return redirect()->route('no_access');
+        }
 
         // 8 for show  form zakaz  
         $formySwith = 8;
@@ -37,6 +44,9 @@ class ZakazMainController extends Controller {
     }
 
     public function createZakaz(Request $request) {
+        if(Gate::denies('show_mang_kanc_admin')){
+            return redirect()->route('no_access');
+        }
 
         //проверка на права создания 
 
@@ -63,6 +73,9 @@ class ZakazMainController extends Controller {
     }
 
     public function editZakaz($id = 0) {
+        if(Gate::denies('show_mang_kanc_admin')){
+            return redirect()->route('no_access');
+        }
         //проверка на права
         //закрытие / открытие если открытых нет
         $zakaz = Zakaz::findOrFail($id);
@@ -71,6 +84,9 @@ class ZakazMainController extends Controller {
     }
 
     public function editZakazdb(Request $request, $id = 0) {
+         if(Gate::denies('show_mang_kanc_admin')){
+            return redirect()->route('no_access');
+        }
         //проверка на права
         //закрытие / открытие если открытых нет
         if ($request->isMethod('PUT')) {

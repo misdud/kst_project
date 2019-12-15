@@ -23,6 +23,9 @@ Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
 
     Route::middleware(['auth'])->group(function(){
         
+        Route::get('/no_access', 'Appmain\ErrorController@noAccess')->name('no_access');
+        
+        
         Route::get('/main','Appmain\MainPageController@showMainPage')->name('main');
         
         //sitting users for admin

@@ -2,38 +2,34 @@
 
 @section('content')
 <div class="container">
-    <div class="mx-auto" style="width: 200px;">
-        <img src="img/logo.png"  width="200" height="120" alt="УП Калийспецтранс">
-        <br />
-        <p>  УП &laquo;Калийспецтранс&raquo; &{{ date('Y',time())}}</p>
-        <br />
+    <div class="mx-auto" style="width: 250px;">
+        <div class="wrapper">
+      <div class="item">
+        <img src="img/logo.png" />
+        <span class="information">
+          <strong>Developer Dudko M.M. for Kalitrans</strong>
+          <br />All right resolve
+          <br />2020
+        </span>
+      </div>
     </div>
+        </div>
+        <div class="text-center pagination-centered pt-5">
+            <div id="company" class="justify-content-center" >УП &laquo;Калийспецтранс&raquo;</div>
+        <br />
+        </div>
+
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Вход на ресурс') }}</div>
+            <div class="card shadow-lg">
+                <div class="card-header">{{ __('Вход') }}</div>
 
                 <div class="card-body">  <!-- route("login") -->
                     <form method="POST" action="{{ route('mylogin') }}">
                         @csrf
 
-                        <!--  <div class="form-group row">
-                              <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-  
-                              <div class="col-md-6">
-                                  <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-  
-                                  @error('email')
-                                      <span class="invalid-feedback" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                      </span>
-                                  @enderror
-                              </div>
-                          </div>
-                        -->
-
                         <div class="form-group row">
-                            <label for="login" class="col-md-4 col-form-label text-md-right">{{ __('Логин') }}</label>
+                            <label for="login" class="col-md-4 col-form-label text-md-right">{{ __('Табельный') }}</label>
 
                             <div class="col-md-6">
                                 <input id="login" type="text" class="form-control @error('login') is-invalid @enderror" name="login" value="{{ old('login') }}" required autocomplete="login" autofocus>

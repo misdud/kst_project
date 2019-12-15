@@ -94,6 +94,8 @@
         <h5 class="text-info">Ваших товаров в этой заявочной компании не найдено.</h5>
         <br />
         @endif
+        <p  class="text-secondary">Помните, что проверяющее лицо вправе удалять ваши товары без уведомления.</p>
+        <br />
         <a href="{{ route('orders.index') }}" class="btn btn-primary" role="button">Добавить товар</a>
         <a href="{{ route('myorders.index') }}" class="btn btn-info" role="button">Вернуться назад</a>
     </div>

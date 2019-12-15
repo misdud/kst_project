@@ -8,30 +8,40 @@
                 <nav class="navbar bg-light justify-content-center ">
                     <!-- Links -->
                     <div class="bg-light border-right" id="sidebar-wrapper">
-                        <div class="py-1 pt-3 sidebar-heading shadow " style="background-color: #CAD4DC"><h4><b>Пользователи:</b></h4> </div>
+                        <span class="d-block p-2 rounded-top bg-secondary text-white"></span>       
+                        @canany(['show_users_admin', 'show_mang_kanc_admin', 'show_moder_kanc_admin'])
+                        @can('show_users_admin')
+                        <div class="py-1 pt-2 sidebar-heading shadow " style="background-color: #CAD4DC"><h4><b>Пользователи:</b></h4> </div>
                         <div class="list-group list-group-flush shadow">
-                            <a href="{{ route('show_users') }}" class="list-group-item list-group-item-action bg-light">Список всех ({{ session('count_users')?? '&'}})</a>
-                            <a href="{{ route('roles_main') }}" class="list-group-item list-group-item-action bg-light">Роли пользователей </a>
+                            <a href="{{ route('show_users') }}" class="list-group-item list-group-item-action bg-light pl-3"><img src="{{ URL::asset('/') }}img/users.png" width="30" class="pr-2"/>Пользователи сервиса ({{ session('count_users')?? '&'}})</a>
+                            <a href="{{ route('roles_main') }}" class="list-group-item list-group-item-action bg-light pl-3"><img src="{{ URL::asset('/') }}img/manager.png" width="30" class="pr-2"/>Роли пользователей </a>
                         </div>
+                        @endcan
+                        @can('show_mang_kanc_admin')
                         <div class="py-1 pt-2 sidebar-heading shadow" style="background-color: #CAD4DC" ><h4><b>Компании:</b></h4> </div>
                         <div class="list-group list-group-flush shadow">
-                            <a href="{{ route('zakaz_list') }}" class="list-group-item list-group-item-action bg-light">Управление заказами</a>
+                            <a href="{{ route('zakaz_list') }}" class="list-group-item list-group-item-action bg-light pl-3"><img src="{{ URL::asset('/') }}img/calendar.png" width="30" class="pr-2"/>Управление заказами</a>
                         </div>
                         <div class="py-1 pt-2 sidebar-heading shadow" style="background-color: #CAD4DC" ><h4><b>Номенклатура:</b></h4> </div>
                         <div class="list-group list-group-flush shadow">
-                            <a href="{{ route('products.index') }}" class="list-group-item list-group-item-action bg-light">Управление справочником</a>
+                            <a href="{{ route('products.index') }}" class="list-group-item list-group-item-action bg-light pl-3"><img src="{{ URL::asset('/') }}img/list.png" width="30" class="pr-2"/>Управление справочником</a>
                         </div>
+                        @endcan
+                        <div class="py-1 pt-2 sidebar-heading shadow" style="background-color: #CAD4DC"><h4><b>Валидация заказов:</b></h4> </div>
+                        <div class="list-group list-group-flush shadow">
+                            @can('show_moder_kanc_admin')
+                            <a href="{{ route('valids.index') }}" class="list-group-item list-group-item-action bg-light pl-3"><img src="{{ URL::asset('/') }}img/handshake.png" width="30" class="pr-2"/>Проверка компаний</a>
+                            @endcan
+                            <a href="{{ route('show_index_raport') }}" class="list-group-item list-group-item-action bg-light pl-3"><img src="{{ URL::asset('/') }}img/raport.png" width="30" class="pr-2"/>  Отчеты</a>
+                        </div>
+                         @endcanany
                         <div class="py-1 pt-2 sidebar-heading shadow " style="background-color: #CAD4DC"  ><h4><b>Заказы канцелярии:</b></h4> </div>
                         <div class="list-group list-group-flush  shadow">
-                            <a href="{{ route('orders.index') }}" class="list-group-item list-group-item-action bg-light">Создание заказа</a>
-                            <a href="{{ route('myorders.index') }}" class="list-group-item list-group-item-action bg-light">Мои заказы</a>
-                            <a href="{{ route('otdel_order_list') }}" class="list-group-item list-group-item-action bg-light">Заказы моего отдела</a>
+                            <a href="{{ route('orders.index') }}" class="list-group-item list-group-item-action bg-light pl-3"><img src="{{ URL::asset('/') }}img/shop.png" width="30" class="pr-2"/>Создание заказа</a>
+                            <a href="{{ route('myorders.index') }}" class="list-group-item list-group-item-action bg-light pl-3"><img src="{{ URL::asset('/') }}img/add_cart.png" width="30" class="pr-2"/>Мои заказы</a>
+                            <a href="{{ route('otdel_order_list') }}" class="list-group-item list-group-item-action bg-light pl-3"><img src="{{ URL::asset('/') }}img/list_users.png" width="30" class="pr-2"/>Заказы моего отдела</a>
                         </div>
-                         <div class="py-1 pt-2 sidebar-heading shadow" style="background-color: #CAD4DC"><h4><b>Валидация заказов:</b></h4> </div>
-                        <div class="list-group list-group-flush shadow">
-                            <a href="{{ route('valids.index') }}" class="list-group-item list-group-item-action bg-light">Проверка компаний</a>
-                            <a href="{{ route('show_index_raport') }}" class="list-group-item list-group-item-action bg-light">Отчеты</a>
-                        </div>
+
                     </div>
 
                 </nav>

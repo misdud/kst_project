@@ -10,11 +10,15 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use App\Otdel;
+use Gate;
 
 class WorksUsersController extends Controller {
 
     public function show_users() {
         //isAdmin
+        if(Gate::denies('show_users_admin')){
+            return redirect()->route('no_access');
+        }
 
         $users_count = User::count();
 
@@ -41,7 +45,11 @@ class WorksUsersController extends Controller {
     }
 
     public function registr() {
-
+        //isAdmin
+        if(Gate::denies('show_users_admin')){
+            return redirect()->route('no_access');
+        }
+        
         if (view()->exists('mylayouts.main.admin_page')) {
          // @param 2 - for registr users
             $formySwith = 2;
@@ -52,6 +60,11 @@ class WorksUsersController extends Controller {
     }
 
     public function create(Request $request) {
+        //isAdmin
+        if(Gate::denies('show_users_admin')){
+            return redirect()->route('no_access');
+        }
+        
         if ($request->isMethod('POST')) {
 
             $data = $request->only(['name', 'login', 'password']);
@@ -80,6 +93,11 @@ class WorksUsersController extends Controller {
 
     //echo form for edit user
     public function edit(Request $request, $id = 0) {
+        //isAdmin
+        if(Gate::denies('show_users_admin')){
+            return redirect()->route('no_access');
+        }
+        
         if ($id == 0 && $request->input('role_id') == NULL) {
             return redirect()->back()->with('message', 'Произошла ошибка при выборе');
         } else {
@@ -111,6 +129,10 @@ class WorksUsersController extends Controller {
 
     //function for edit user
     public function editDbUser(Request $request, $id = null) {
+        //isAdmin
+        if(Gate::denies('show_users_admin')){
+            return redirect()->route('no_access');
+        }
 
         if ($request->isMethod('PUT')) {
 //            dump($request->activuser);
@@ -144,7 +166,7 @@ class WorksUsersController extends Controller {
 
                 User::where('id', $id)->update([
                     'name' => $request->input('name'),
-                    'password' => Hash::make($request->input('passvord')),
+                    'password' => Hash::make($request->input('password')),
                     'activ' => $request->input('activ') === '1' ? 1 : 0,
                 ]);
                 return redirect()->back()->with('message', 'Пароль и поля изменены');
@@ -158,6 +180,11 @@ class WorksUsersController extends Controller {
     }
     
     public function otdelEdit(Request $request){
+        //isAdmin
+        if(Gate::denies('show_users_admin')){
+            return redirect()->route('no_access');
+        }
+        
         if($request->isMethod('PUT')){
             $user = User::findOrFail($request->input('user_id'));
             $otdel = Otdel::findOrFail($request->input('otdel_id'));

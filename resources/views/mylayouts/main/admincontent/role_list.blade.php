@@ -34,8 +34,6 @@
          <p ><a href="{{ route('roles_main') }}" class="btn btn-info" role="button">Вернуться назад</a></p>
         </div>
         <div class="pagination justify-content-center">{{ $users_role->links() }}</div>
-        
 
-        
     </div>
 </div>

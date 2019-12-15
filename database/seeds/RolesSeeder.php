@@ -21,7 +21,7 @@ class RolesSeeder extends Seeder {
                 'inforole' => 'Validator oldres kancler',
             ],
                 [
-                'rolename' => 'menjr_kanc',
+                'rolename' => 'mang_kanc',
                 'inforole' => 'Open\clos zaiv +edit sp prod',
             ],
                 [

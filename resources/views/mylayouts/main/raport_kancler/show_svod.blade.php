@@ -19,7 +19,7 @@
         </div>  
 
         @if(count($orders_zakaz)>0)
-        <span class="d-block p-1  rounded-top bg-info text-white ">Всего заказов в этой компании {{ count($orders_zakaz) ?? ''}} (согласованные):</span> 
+        <span class="d-block p-1  rounded-top bg-info text-white ">Всего заказов в этой компании {{ count($orders_zakaz) ?? ''}} (согласованные и >0):</span> 
 
         @else
         <h5 class="text-info">Товаров (согласованных) в этой заявочной компании не найдено.</h5>
@@ -72,6 +72,6 @@
         </table>
   
         <a href="{{ route('show_otdels_raport',['id_zakr'=>$zakaz->id]) }}" class="btn btn-primary" role="button">Вернуться назад</a>
-        <a href="{{ route('svod_zakaz_pdf',['id_zak'=>$zakaz->id]) }}" class="btn btn-success" role="button">Скачать cводный PDF</a>
+        <a href="{{ route('svod_zakaz_pdf',['id_zak'=>$zakaz->id]) }}" class="btn btn-outline-success" role="button">Скачать cводный PDF</a>
     </div>
 </div>

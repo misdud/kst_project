@@ -30,9 +30,9 @@
                     <td class="px-4">{{ date('j',(strtotime($zakaz->dodate) - strtotime($zakaz->created_at))) }}</td>
 
                     @if($zakaz->zakazactiv == 1)
-                        <td class="table-success">Активна</td>
+                        <td class="table-danger">Активна</td>
                     @else
-                        <td class="table-warning">Закрыта</td>
+                        <td class="table-success">Закрыта</td>
                     @endif
                     <td><a href="{{ route('valids.show',['valid'=>$zakaz->id])}}" class="btn btn-outline-secondary" role="button">Посмотреть</a></td>
                 </tr>

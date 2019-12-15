@@ -48,12 +48,8 @@
                      <td align="right" >{{ $col_prod->count() }}</td>
                     <td align="right">{{ $user_count }}</td>
                     <td align="right">{{ $valid_count }}</td>
-                    
-                   
-
                 </tr>
                 @endforeach
-  
 
             </tbody>
         </table>

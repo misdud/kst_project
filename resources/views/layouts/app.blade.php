@@ -18,6 +18,65 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+            <style>
+    #company {
+        font-size: 25px;
+        font-family: Verdana;
+        font-weight: bold;
+        color: transparent;
+        background: #666666;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+        text-shadow: 0px 3px 3px rgba(255,255,255,0.5);
+        }
+     .wrapper {  
+      display: inline-block;  
+      width: 200px;  
+      height: 100px;  
+      vertical-align: top;  
+      margin: 1em 1.5em 2em 0;  
+      cursor: pointer;  
+      position: relative;  
+      font-family: Tahoma, Arial;  
+      perspective: 4000px;  
+    }  
+      
+    .item {  
+      height: 100px;  
+      transform-style: preserve-3d;  
+      transition: transform .6s;  
+    }
+     .item img {  
+      display: block;  
+      position: absolute;  
+      top: 0;  
+      border-radius: 3px;  
+      box-shadow: 0px 0px 0px rgba(0,0,0,0.3);  
+      transform: translateZ(50px);  
+      transition: all .6s;  
+      
+    }  
+      
+    .item .information {  
+      display: block;  
+      position: absolute;  
+      top: 0;  
+      height: 50px;  
+      width: 250px;  
+      text-align:center;  
+      border-radius: 15px;  
+      padding: 10px;  
+      font-size: 12px;  
+      box-shadow: none;  
+      transform: rotateX(-90deg) translateZ(50px);  
+      transition: all .8s;  
+      
+    }
+     .item:hover {  
+      transform: translateZ(-50px) rotateX(85deg);  
+    }  
+    </style>
 </head>
 <body>
     <div id="app">
@@ -74,7 +133,7 @@
 
         <main class="py-4">
             @yield('content')
-        </main>
+        </main> 
     </div>
 </body>
 </html>
