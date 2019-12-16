@@ -1,17 +1,13 @@
 <div class="card">
     <div class="card-header">{{$header}}</div>
     <div class="card-body">
-        
         <div class=' text-right'><a href="{{ route('products.create')}}" class="btn btn-outline-primary btn-block" role="button"> + Добавиь товар в справочник "Канцелярия"</a></div>
         <br/>
-
          <br />
-
         @if(count($products)>0)
         <h2>Справочник "Канцелярия" </h2>
-        
-        <p class="text-info">Всего товаров {{ $product_count?? '&'}}:</p>            
-        
+        <br />
+        <span class="d-block p-1  rounded-top bg-info text-white">Всего товаров {{ $product_count ?? ''}}:</span>       
         <table class="table table-hover">
             <thead class="thead-light">
                 <tr>
@@ -46,8 +42,6 @@
             </tbody>
         </table> 
         <div class="pagination justify-content-center">{{ $products->links() }}</div>
-        
 
-        
     </div>
 </div>

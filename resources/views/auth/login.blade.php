@@ -1,3 +1,11 @@
+
+@if( strpos($_SERVER['HTTP_USER_AGENT'],'MSIE')!==false || strpos($_SERVER['HTTP_USER_AGENT'],'rv:11.0')!==false)
+
+@include('mylayouts.main.no_good_agent')
+@php
+return;
+@endphp
+@endif
 @extends('layouts.app')
 
 @section('content')

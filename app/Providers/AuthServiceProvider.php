@@ -55,6 +55,16 @@ class AuthServiceProvider extends ServiceProvider
             }
            return FALSE;
         });
+        
+       Gate::define('show_moder_mang_kanc_admin', function(User $user){
+            $roles = $user->roles()->get();
+            foreach ($roles as $role){
+            if($role->rolename == 'admin' || $role->rolename == 'moder_kanc' || $role->rolename == 'mang_kanc'){
+                    return TRUE;
+                }
+            }
+           return FALSE;
+        });
 
         //
     }

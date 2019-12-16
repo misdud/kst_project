@@ -88,4 +88,4 @@ Route::post('logout', 'MyAuth\MyLogincontroller@logout')->name('logout');
 
 //Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home','Appmain\MainPageController@showMainPage')->name('home');

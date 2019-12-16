@@ -5,12 +5,16 @@ namespace App\Http\Controllers\AppKancler;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use PDF;
+use Gate;
 
 use App\Zakaz;
 
 class RaportKanclerController extends Controller
 {
     public function index(){
+        if(Gate::denies('show_mang_kanc_admin')){
+            return redirect()->route('no_access');
+        }
         
          //get ist all zakaz;
         $list_zakazs = Zakaz::with('orders')->orderBy('created_at', 'desc')->paginate(5);
@@ -27,6 +31,9 @@ class RaportKanclerController extends Controller
     }
     
         public function show($id_zakr) {
+        if(Gate::denies('show_mang_kanc_admin')){
+            return redirect()->route('no_access');
+        }
         $zakaz = Zakaz::findOrFail($id_zakr);
         $orders_zakaz = $zakaz->orders()->with('otdel')->get();
         $group_otdel_orders = $orders_zakaz->groupBy('otdel_id');
@@ -40,6 +47,9 @@ class RaportKanclerController extends Controller
     }
     
     public function showRaportOtdel($id_zak=0, $id_otdel=0){
+        if(Gate::denies('show_mang_kanc_admin')){
+            return redirect()->route('no_access');
+        }
 
         $zakaz = Zakaz::findOrFail($id_zak);
         $otdel_orders = $zakaz->orders()
@@ -62,6 +72,9 @@ class RaportKanclerController extends Controller
     }
         
           public function showSvod($id_zakaz){
+            if(Gate::denies('show_mang_kanc_admin')){
+               return redirect()->route('no_access');
+            }
               
               $zakaz = Zakaz::findOrFail($id_zakaz);
               $orders_zakaz = $zakaz->orders()->with('product')
@@ -87,6 +100,9 @@ class RaportKanclerController extends Controller
           }
     
         public function downloadSvodPDF($id_zak=0){
+        if(Gate::denies('show_mang_kanc_admin')){
+            return redirect()->route('no_access');
+        }
 
 
         $zakaz = Zakaz::findOrFail($id_zak);

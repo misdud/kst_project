@@ -175,7 +175,7 @@ class ValidResourseController extends Controller {
     }
 
     public function downloadZakazPDF($id_zak = 0, $id_otdel = 0) {
-        if(Gate::denies('show_moder_kanc_admin')){
+        if(Gate::denies('show_moder_mang_kanc_admin')){
             return redirect()->route('no_access');
         }
 

@@ -7,9 +7,8 @@
             <div class="nav-side-menu">
                 <nav class="navbar bg-light justify-content-center ">
                     <!-- Links -->
-                    <div class="bg-light border-right" id="sidebar-wrapper">
+                    <div class="bg-light border-right md-3" id="sidebar-wrapper">
                         <span class="d-block p-2 rounded-top bg-secondary text-white"></span>       
-                        @canany(['show_users_admin', 'show_mang_kanc_admin', 'show_moder_kanc_admin'])
                         @can('show_users_admin')
                         <div class="py-1 pt-2 sidebar-heading shadow " style="background-color: #CAD4DC"><h4><b>Пользователи:</b></h4> </div>
                         <div class="list-group list-group-flush shadow">
@@ -17,7 +16,6 @@
                             <a href="{{ route('roles_main') }}" class="list-group-item list-group-item-action bg-light pl-3"><img src="{{ URL::asset('/') }}img/manager.png" width="30" class="pr-2"/>Роли пользователей </a>
                         </div>
                         @endcan
-                        @can('show_mang_kanc_admin')
                         <div class="py-1 pt-2 sidebar-heading shadow" style="background-color: #CAD4DC" ><h4><b>Компании:</b></h4> </div>
                         <div class="list-group list-group-flush shadow">
                             <a href="{{ route('zakaz_list') }}" class="list-group-item list-group-item-action bg-light pl-3"><img src="{{ URL::asset('/') }}img/calendar.png" width="30" class="pr-2"/>Управление заказами</a>
@@ -26,15 +24,14 @@
                         <div class="list-group list-group-flush shadow">
                             <a href="{{ route('products.index') }}" class="list-group-item list-group-item-action bg-light pl-3"><img src="{{ URL::asset('/') }}img/list.png" width="30" class="pr-2"/>Управление справочником</a>
                         </div>
-                        @endcan
+
                         <div class="py-1 pt-2 sidebar-heading shadow" style="background-color: #CAD4DC"><h4><b>Валидация заказов:</b></h4> </div>
                         <div class="list-group list-group-flush shadow">
-                            @can('show_moder_kanc_admin')
+
                             <a href="{{ route('valids.index') }}" class="list-group-item list-group-item-action bg-light pl-3"><img src="{{ URL::asset('/') }}img/handshake.png" width="30" class="pr-2"/>Проверка компаний</a>
-                            @endcan
+
                             <a href="{{ route('show_index_raport') }}" class="list-group-item list-group-item-action bg-light pl-3"><img src="{{ URL::asset('/') }}img/raport.png" width="30" class="pr-2"/>  Отчеты</a>
                         </div>
-                         @endcanany
                         <div class="py-1 pt-2 sidebar-heading shadow " style="background-color: #CAD4DC"  ><h4><b>Заказы канцелярии:</b></h4> </div>
                         <div class="list-group list-group-flush  shadow">
                             <a href="{{ route('orders.index') }}" class="list-group-item list-group-item-action bg-light pl-3"><img src="{{ URL::asset('/') }}img/shop.png" width="30" class="pr-2"/>Создание заказа</a>
@@ -48,9 +45,9 @@
             </div>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-9 pt-2">
     
-            <p>Сработал {{ $formySwith }}</p>            
+           {{-- <p>Сработал {{ $formySwith }}</p> --}}           
 @switch($formySwith)
 
     @case(1)
@@ -152,6 +149,11 @@
  @case(28)
         @include('mylayouts.main.raport_kancler.show_svod', ['header' => 'Сводная по выбранной заявочной компании'])
         @break
+        
+        {{---### FOR NO ROLE ###---}}
+ @case(100)
+        @include('mylayouts.main.no_role_default', ['header' => 'Определение прав'])
+        @break  
 
     @default
        @include('mylayouts.main.admincontent.default_admin_page', ['header' => 'Панель администратора'])

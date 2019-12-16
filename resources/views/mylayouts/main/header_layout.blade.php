@@ -30,10 +30,8 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
+                        {{-- for new servise
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="Заказ канцелярии">Заказ канцелярии</a>
-                            </li>
                             <li class="nav-item active">
                                 <a class="nav-link" href="Журнал учёта">Журнал учёта</a>
                             </li>
@@ -41,6 +39,7 @@
                                 <a class="nav-link" href="Журнал платежей">Журнал платежей</a>
                             </li>
                         </ul>
+                         --}}
 
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">

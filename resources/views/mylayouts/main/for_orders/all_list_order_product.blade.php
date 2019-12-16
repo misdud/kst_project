@@ -35,7 +35,8 @@
                 <tr>
                     <th>№</th>
                     <th>Название товара</th>
-                    <th>Единица измерения</th>
+                    <th>Крат. описание</th>
+                    <th>Ед. изм.</th>
                     <th>Действие</th>
                 </tr>
             </thead>
@@ -46,6 +47,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $product->productname }}</td>
+                    <td>{{ mb_substr($product->productdiscript, 0, 35) }}</td>
                     <td>{{ $product->units }}</td>
                     @if($is_isset_zakaz==TRUE)
                     <td><a href="{{ route('orders.show',['order'=>$product->id])}}" class="btn btn-outline-secondary" role="button">Заказать</a></td>

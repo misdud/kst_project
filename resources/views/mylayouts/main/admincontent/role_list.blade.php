@@ -22,7 +22,7 @@
             <td>{{ $loop->iteration }}</td>
             <td>{{ $user->name }}</td>
             <td>{{ $user->login}}</td>
-            <td>отдел</td>
+            <td>{{ $user->otdel->otdelfullname ?? ''}}</td>
           </tr>
             @empty
             <p>Пользователи не найдены</p>

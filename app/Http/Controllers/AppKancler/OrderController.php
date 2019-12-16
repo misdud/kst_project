@@ -27,7 +27,7 @@ class OrderController extends Controller {
             $is_isset_zakaz = FALSE;
         }
         $is_isset_zakaz = Zakaz::select('zakazactiv')->where('zakazactiv', 1)->count();
-        $products = Product::select('id', 'productname', 'units')->where('productactiv', 1)->orderBy('productname')->paginate(10);
+        $products = Product::select('id', 'productname', 'productdiscript','units')->where('productactiv', 1)->orderBy('productname')->paginate(10);
         $product_count = Product::where('productactiv', 1)->count();
 
         if (view()->exists('mylayouts.main.admin_page')) {
