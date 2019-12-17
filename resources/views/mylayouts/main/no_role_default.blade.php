@@ -3,10 +3,17 @@
 @section('content')
 <div class="container-fluid">
     <div class="row bg-warning">
-        <h4>У Вас нет прав на просмотр этой информации.</h4>
+     <div class="col-3">
+     </div> 
+        <div class="col-8">
+          <h4>У Вас нет прав(роли) на просмотр, обратитесь к администратору </h4>
+        </div>
+        <div class="col-3">
+            
+        </div> 
+
     </div>
 
     </div>
-</div>
 @endsection
 

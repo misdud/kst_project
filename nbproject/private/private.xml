@@ -2,16 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/auth/login.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/no_good_agent.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/admincontent/default_admin_page.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/no_access.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/routes/web.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/app/Http/Controllers/AppKancler/MyOrderResourseController.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/resources/views/mylayouts/main/admin_page.blade.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/app/Providers/AuthServiceProvider.php</file>
-            <file>file:/C:/xampp/htdocs/laravel6.kst/app/Http/Controllers/Appmain/MainPageController.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
