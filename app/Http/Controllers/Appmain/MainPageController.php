@@ -29,7 +29,7 @@ class MainPageController extends Controller {
              $user = 'admin';
          }
          elseif(in_array('mang_kanc', $role)){
-             $user = 'menjr_kanc';
+             $user = 'mang_kanc';
          }
          elseif(in_array('moder_kanc', $role)){
              $user = 'moder_kanc';
@@ -48,7 +48,7 @@ class MainPageController extends Controller {
                 $formySwith =0;
                 return view('mylayouts.main.admin_page', ['formySwith'=>$formySwith,'user' =>'Администратор']);
                 break;
-            case 'manager_kanc':
+            case 'mang_kanc':
                 //0- is default page in main for role
                 $formySwith =0;
                 return view('mylayouts.main.admin_page', ['formySwith'=>$formySwith, 'user'=>'Менеджер']);
