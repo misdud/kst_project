@@ -23,12 +23,8 @@
         font-size: 25px;
         font-family: Verdana;
         font-weight: bold;
-        color: transparent;
-        background: #666666;
-        -webkit-background-clip: text;
-        -moz-background-clip: text;
-        background-clip: text;
-        text-shadow: 0px 3px 3px rgba(255,255,255,0.5);
+        color: #8F8C8A;
+        text-shadow: 0px 1px 1px rgba(100,100,55,0.5);
         }
      .wrapper {  
       display: inline-block;  

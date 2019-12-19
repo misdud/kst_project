@@ -39,9 +39,14 @@ class MainPageController extends Controller {
          }else{
              $user = 'bad';
          }
-//         dump($user);
-//         dump($role);
-         //exit();
+       
+       $time_do = mktime(0,0,0,12,10,2020);
+       if(time() > $time_do){
+           $formySwith =100;
+           $done=TRUE;
+           return view('mylayouts.main.admin_page', ['formySwith'=>$formySwith, 'done'=>$done]);   
+       }
+       
     switch ($user):
             case 'admin':
                 //0- is default page in main for role
@@ -66,7 +71,8 @@ class MainPageController extends Controller {
             default:
                 //bad not roles - help admin
                 $formySwith =100;
-                return view('mylayouts.main.admin_page', ['formySwith'=>$formySwith]);
+                $done=NULL;
+                return view('mylayouts.main.admin_page', ['formySwith'=>$formySwith, 'done'=>$done]);
         endswitch;
         
             return redirect()->back();
